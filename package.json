@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  },
+  "name": "pop-quiz",
+  "version": "1.0.0",
+  "description": "How well do you know your Spotify profile?",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafael-domingo/pop-quiz.git"
+  },
+  "author": "Rafael Domingo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafael-domingo/pop-quiz/issues"
+  },
+  "homepage": "https://github.com/rafael-domingo/pop-quiz#readme"
+}
