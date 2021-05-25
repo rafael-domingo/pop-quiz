@@ -1,14 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import { Spotify } from '../src/util/Spotify';
+import { Quiz } from '../src/util/Quiz';
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics } from '../src/redux/user'
+import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics, setQuiz } from '../src/redux/user'
 function App() {
   const dispatch = useDispatch();
   const authorization = useSelector(state => state.user.authorization);
   const artists = useSelector(state => state.user.topArtists);
   const tracks = useSelector(state => state.user.topTracks);
+  const lyrics = useSelector(state => state.user.topLyrics);
+  // Start populating Redux State if user has authorized Spotify 
   React.useEffect(() => {
 
     // If user has authorized, obtain access token from callback
@@ -32,6 +35,7 @@ function App() {
         dispatch(setTopTracks(response.items))
         // Get Musix Id for Lyrics 
         Spotify.getMusixId(response.items).then(response => {
+          // Get Lyrics
           Spotify.getMusixLyrics(response).then(response => dispatch(setTopLyrics(response)))
         })
       })
@@ -40,8 +44,10 @@ function App() {
 
   }, [])
 
-  console.log(artists)
-
+  if (artists.length > 1 && tracks.length > 1 && lyrics.length > 1) {
+    const output = Quiz.generateQuiz(artists, tracks, lyrics)
+    dispatch(setQuiz(output))
+  }
  
   return (
     <div className="App">
