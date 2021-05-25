@@ -76,4 +76,24 @@ app.post('/tracks', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.post('/musixId', (req, res) => {
+    const artist = req.body.artist
+    const track = req.body.track
+    const url = `https://api.musixmatch.com/ws/1.1/matcher.track.get?q_artist=${encodeURIComponent(artist)}&q_track=${encodeURIComponent(track)}&apikey=${process.env.MUSIXMATCH_KEY}`;
+    return fetch(url)
+    .then(response => response.json())
+    .then(data => res.json(data))
+    .catch(err => console.log(err))
+})
+
+app.post('/lyrics', (req, res) => {
+    const trackId = req.body.trackId
+    const url = `https://api.musixmatch.com/ws/1.1/track.snippet.get?track_id=${trackId}&apikey=${process.env.MUSIXMATCH_KEY}`;
+    return fetch(url)
+    .then(response => response.json())
+    .then(data => res.json(data))
+    .catch(err => console.log(err))
+})
+
+
 app.listen(port, () => console.log(`Server started on ${port}`));

@@ -8,7 +8,8 @@ export const userSlice = createSlice({
         authorization: window.location.href.includes('token'),  
         accessToken: {},    
         topArtists: {},
-        topTracks: {}
+        topTracks: {},
+        topLyrics: {}
     },
     reducers: {
         setUsername: (state, action) => {
@@ -28,9 +29,12 @@ export const userSlice = createSlice({
         },
         setTopTracks: (state, action) => {
             state.topTracks = action.payload
+        },
+        setTopLyrics: (state, action) => {
+            state.topLyrics = action.payload
         }
     }
 })
 
-export const { setUsername, setProfilePicture, setAuthorization, setAccessToken, setTopArtists, setTopTracks } = userSlice.actions;
+export const { setUsername, setProfilePicture, setAuthorization, setAccessToken, setTopArtists, setTopTracks, setTopLyrics } = userSlice.actions;
 export default userSlice.reducer

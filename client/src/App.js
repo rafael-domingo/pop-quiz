@@ -3,11 +3,12 @@ import './App.css';
 import { Spotify } from '../src/util/Spotify';
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks } from '../src/redux/user'
+import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics } from '../src/redux/user'
 function App() {
   const dispatch = useDispatch();
   const authorization = useSelector(state => state.user.authorization);
   const artists = useSelector(state => state.user.topArtists);
+  const tracks = useSelector(state => state.user.topTracks);
   React.useEffect(() => {
 
     // If user has authorized, obtain access token from callback
@@ -27,15 +28,21 @@ function App() {
       })
       // Get Top Tracks
       Spotify.getTopTracks(token).then(response => {
+        console.log(response.items)
         dispatch(setTopTracks(response.items))
+        // Get Musix Id for Lyrics 
+        Spotify.getMusixId(response.items).then(response => {
+          Spotify.getMusixLyrics(response).then(response => dispatch(setTopLyrics(response)))
+        })
       })
-      
     }      
     console.log(authorization)
 
   }, [])
 
   console.log(artists)
+
+ 
   return (
     <div className="App">
       <header className="App-header">
