@@ -1,7 +1,7 @@
 import React from 'react'
 import Background from '../components/Home/background';
-
 export default function Home() {
+
     const divStyle = {
         backgroundColor: 'black',
         color: 'white',
@@ -17,10 +17,10 @@ export default function Home() {
         height: '48px',
         textAlign: 'center'
     }
-    
+
     return (
         <div style={divStyle}>
-            <Background />
+            <Background/>
             <div style={headerStyle}>
                 <h1>Pop Quiz</h1>
                 <p>how well do you know your own music?</p>
