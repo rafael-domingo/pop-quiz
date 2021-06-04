@@ -84,5 +84,30 @@ export const Spotify = {
         })
         return Promise.all(promiseArray)
 
-    }
+    },
+
+    getCredentials() {
+        return fetch('/clientcredentials', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => data)
+    },
+
+    getNewReleases(accessToken) {
+        return fetch('/newreleases', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',                
+            },
+            body: JSON.stringify({
+                accessToken: accessToken
+            })
+        }).then(response => {
+            return response.json()
+        }).then(data => data)
+    } 
 }

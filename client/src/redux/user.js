@@ -10,7 +10,8 @@ export const userSlice = createSlice({
         topArtists: {},
         topTracks: {},
         topLyrics: {},
-        quiz: {}
+        quiz: {},
+        newReleases: {}
     },
     reducers: {
         setUsername: (state, action) => {
@@ -36,9 +37,12 @@ export const userSlice = createSlice({
         },
         setQuiz: (state, action) => {
             state.quiz = action.payload
+        },
+        setNewReleases: (state, action) => {
+            state.newReleases = action.payload
         }
     }
 })
 
-export const { setUsername, setProfilePicture, setAuthorization, setAccessToken, setTopArtists, setTopTracks, setTopLyrics, setQuiz } = userSlice.actions;
+export const { setUsername, setProfilePicture, setAuthorization, setAccessToken, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases } = userSlice.actions;
 export default userSlice.reducer

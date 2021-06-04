@@ -11,6 +11,7 @@ app.use(cors());
 // ENV
 var client_id = process.env.CLIENT_ID;
 var redirect_uri = process.env.REDIRECT_URI;
+var client_secret = process.env.CLIENT_SECRET;
 
 // Authorization Flow
 app.get('/login', (req, res) => {
@@ -42,6 +43,46 @@ app.post('/user', (req, res) => {
     .then(response => response.json())
     .then(data => res.json(data))
     .catch(error => console.log(error))
+})
+
+app.post('/clientcredentials', (req, res) => {
+    const url = 'https://accounts.spotify.com/api/token'
+    const data = {
+        grant_type: 'client_credentials',
+        client_id: client_id,
+        client_secret: client_secret
+    }
+    const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    }
+    const params = new URLSearchParams();
+    Object.keys(data).forEach(prop => {
+        params.set(prop, data[prop]);
+    });
+    return fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: params,        
+    })
+    .then(response => response.json())
+    .then(data => res.json(data))
+    .catch(error => console.log(error))
+})
+
+app.post('/newreleases', (req, res) => {
+    const token = req.body.accessToken
+    const url = 'https://api.spotify.com/v1/browse/new-releases?country=US&limit=50';    
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    })
+    .then(response => response.json())
+    .then(data => res.json(data.albums.items))
+    .catch(error => console.log(error));
 })
 
 app.post('/artists', (req, res) => {
