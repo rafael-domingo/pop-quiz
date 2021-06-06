@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import { Spotify } from '../src/util/Spotify';
+import QuizGame from './containers/Quiz';
 import { Quiz } from '../src/util/Quiz';
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases } from '../src/redux/user'
 import Home from './containers/Home';
+import Loading from './containers/Loading';
 function App() {
   const dispatch = useDispatch();
   const authorization = useSelector(state => state.user.authorization);
@@ -57,14 +59,9 @@ function App() {
  
   return (
     <div className="App">
-      <Home/>
-      <a
-        className="App-link"
-        href="http://localhost:5000/login"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
+      <Home/> 
+      <Loading/>
+      <QuizGame />
     </div>
   );
 }

@@ -3,8 +3,13 @@ import Background from '../components/Home/background';
 export default function Home() {
 
     const divStyle = {
-        backgroundColor: 'black',
+        backgroundColor: 'rgba(0,0,0,0.5)',
         color: 'white',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+
     }
     const headerStyle = {
 
@@ -24,7 +29,7 @@ export default function Home() {
             <div style={headerStyle}>
                 <h1>Pop Quiz</h1>
                 <p>how well do you know your own music?</p>
-                <span style={loginButton}>Login with Spotify</span>
+                <a href="http://localhost:5000/login" style={loginButton}>Login with Spotify</a>
             </div>
             
             

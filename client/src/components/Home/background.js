@@ -5,7 +5,24 @@ export default function Background() {
     const newReleases = useSelector(state => state.user.newReleases)
     console.log(newReleases)
     const divStyle = {
-        
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        height: '100%',
+        width: '100%',
+        overflow: 'hidden',
+        opacity: '100%',
+        position: 'absolute',
+        overflow: 'hidden',
+        zIndex: '-1'
+    }
+
+    const imgStyle = {
+        width: '35vw',
+        height: 'auto',
+        padding: '50px',
+        borderRadius: '10%'
     }
     if (newReleases.length > 1) {
         return (
@@ -13,7 +30,7 @@ export default function Background() {
                 {
                     newReleases.map((item) => {
                         return (
-                            <img src={item.images[0].url} />
+                            <img style={imgStyle} src={item.images[0].url} />
                         )
                     })
                 }
