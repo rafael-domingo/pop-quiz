@@ -2,9 +2,12 @@ import React from 'react';
 import Lyric from './lyric';
 import Picture from './picture';
 import Track from './track';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCorrect, setAnswered } from "../../redux/user";
 export default function General({index}) {
    const question = useSelector(state => state.user.quiz[index])
+   const dispatch = useDispatch()
+
     const divStyle = {
         color: 'white',
         display: 'flex',
@@ -35,10 +38,15 @@ export default function General({index}) {
                 <div style={questionStyle}>
                     {question.question}
                 </div>    
-                <div style={answerStyle}>
+                <div style={answerStyle} onClick={() => {
+                    dispatch(setCorrect())
+                    dispatch(setAnswered())
+                }}>
                     {question.correct}
                 </div>
-                <div style={answerStyle}>
+                <div style={answerStyle} onClick={() => {
+                    dispatch(setAnswered())
+                }}>
                     {question.incorrect}
                 </div>
             </div>

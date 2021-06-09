@@ -5,20 +5,24 @@ import QuizGame from './containers/Quiz';
 import { Quiz } from '../src/util/Quiz';
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases } from '../src/redux/user'
+import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases, setView } from '../src/redux/user'
 import Home from './containers/Home';
 import Loading from './containers/Loading';
+import Results from './containers/Results';
+import Profile from './containers/Profile';
 function App() {
   const dispatch = useDispatch();
   const authorization = useSelector(state => state.user.authorization);
   const artists = useSelector(state => state.user.topArtists);
   const tracks = useSelector(state => state.user.topTracks);
   const lyrics = useSelector(state => state.user.topLyrics);
+  const view = useSelector(state => state.user.view)
   // Start populating Redux State if user has authorized Spotify 
   React.useEffect(() => {
 
     // If user has authorized, obtain access token from callback
     if (authorization) {
+      dispatch(setView('Loading'))
       var callback = window.location.hash.split('&')
       var token = callback[0].split('=')
       token = token[1]
@@ -57,13 +61,43 @@ function App() {
     dispatch(setQuiz(output))
   }
  
-  return (
-    <div className="App">
-      <Home/> 
-      <Loading/>
-      <QuizGame />
-    </div>
-  );
+  if (view == 'Home') {
+    return (
+      <div className="App">
+        <Home />
+      </div>
+    )    
+  } else if (view == 'Loading') {
+    return ( 
+      <div className="App">
+        <Loading />
+      </div>
+    )   
+  } else if (view == 'Quiz')  {
+    return (
+      <div className="App">
+        <QuizGame />
+      </div>
+
+    )
+  } else if (view == 'Profile') {
+    return (
+      <div className="App">
+        <Profile />
+      </div>
+    )
+  }
+  else {
+    return (
+      <div className="App">
+        <Home/> 
+        <Loading/>
+        <QuizGame />
+        <Results />
+      </div>
+    );
+  }
+ 
 }
 
 export default App;

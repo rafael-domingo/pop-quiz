@@ -1,6 +1,8 @@
 import React from 'react';
-
+import { useDispatch } from "react-redux";
+import { setCorrect, setAnswered } from "../../redux/user";
 export default function Lyric({question, correct, incorrect, lyric}) {
+   const dispatch = useDispatch()
    
     const divStyle = {
         color: 'white',
@@ -40,10 +42,15 @@ export default function Lyric({question, correct, incorrect, lyric}) {
             <div style={lyricStyle}>
                 "{lyric}"
             </div>
-            <div style={answerStyle}>
+            <div style={answerStyle} onClick={() => {
+                dispatch(setCorrect())
+                dispatch(setAnswered())
+            }}>
                 {correct}
             </div>
-            <div style={answerStyle}>
+            <div style={answerStyle} onClick={() => {
+                dispatch(setAnswered())
+            }}>
                 {incorrect}
             </div>
         </div>

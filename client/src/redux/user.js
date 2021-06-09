@@ -13,7 +13,8 @@ export const userSlice = createSlice({
         quiz: {},
         newReleases: {},
         correct: 0,
-        answered: 7
+        answered: 0,
+        view: 'Home'
     },
     reducers: {
         setUsername: (state, action) => {
@@ -43,14 +44,17 @@ export const userSlice = createSlice({
         setNewReleases: (state, action) => {
             state.newReleases = action.payload
         },
-        setCorrect: (state, action) => {
-            state.correct = action.payload
+        setCorrect: (state) => {
+            state.correct++
         },
-        setAnswered: (state, action) => {
-            state.answered = action.payload
+        setAnswered: (state) => {
+            state.answered++
+        },
+        setView: (state, action) => {
+            state.view = action.payload
         }
     }
 })
 
-export const { setUsername, setProfilePicture, setAuthorization, setAccessToken, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases, setCorrect, setAnswered } = userSlice.actions;
+export const { setUsername, setProfilePicture, setAuthorization, setAccessToken, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases, setCorrect, setAnswered, setView } = userSlice.actions;
 export default userSlice.reducer

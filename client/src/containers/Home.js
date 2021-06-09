@@ -14,22 +14,40 @@ export default function Home() {
     const headerStyle = {
 
     }
+    const titleStyle = {
+        fontSize: '10vw',
+        lineHeight: '0'
+    }
+    const subtitleStyle = {
+        fontSize: '3vw',
+        color: '#979797'
+    }
     const loginButton = {
         backgroundColor: 'rgba(29, 185, 84, 1)',
         borderRadius: '24px',
         padding: '20px', 
-        width: '252px',
-        height: '48px',
-        textAlign: 'center'
+        width: '35vw',
+        height: 'auto',
+        textAlign: 'center',
+        color: 'white',
+    }
+    const aStyle = {
+        textDecoration: 'none',
+        display: 'flex',
+        justifyContent: 'center'
     }
 
     return (
         <div style={divStyle}>
             <Background/>
             <div style={headerStyle}>
-                <h1>Pop Quiz</h1>
-                <p>how well do you know your own music?</p>
-                <a href="http://localhost:5000/login" style={loginButton}>Login with Spotify</a>
+                <h1 style={titleStyle}>Pop Quiz</h1>
+                <p style={subtitleStyle}>how well do you know your own music?</p>
+                <a style={aStyle} href="http://localhost:5000/login">
+                    <div style={loginButton}>
+                        Login with Spotify
+                    </div>
+                </a>
             </div>
             
             

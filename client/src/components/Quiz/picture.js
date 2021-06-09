@@ -1,7 +1,10 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
+import { setCorrect, setAnswered } from "../../redux/user";
 
 export default function Picture({question, correct, incorrect, image}) {
-   
+    const dispatch = useDispatch()
+
     const divStyle = {
         color: 'white',
         display: 'flex',
@@ -46,10 +49,15 @@ export default function Picture({question, correct, incorrect, image}) {
             <div style={imgDivStyle}>
                 <img style={imgStyle} src={image} />
             </div>
-            <div style={answerStyle}>
+           <div style={answerStyle} onClick={() => {
+                dispatch(setCorrect())
+                dispatch(setAnswered())
+            }}>
                 {correct}
             </div>
-            <div style={answerStyle}>
+            <div style={answerStyle} onClick={() => {
+                dispatch(setAnswered())
+            }}>
                 {incorrect}
             </div>
         </div>
