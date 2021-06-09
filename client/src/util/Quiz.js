@@ -7,7 +7,9 @@ export const Quiz = {
             question: 'Who is your top artist?', 
             correct: topArtists[0].name, 
             incorrect: topArtists[topArtists.length - 1].name,
-            category: 'general'
+            category: 'general',
+            correctImage: topArtists[0].images[0].url,
+            incorrectImage: topArtists[topArtists.length - 1].images[0].url
         }
         quizArray.push(questionObject)
 
@@ -16,7 +18,9 @@ export const Quiz = {
             question: 'What is your top track?',
             correct: `${topTracks[0].name} by ${topTracks[0].artists[0].name}`,
             incorrect: `${topTracks[topTracks.length - 1].name} by ${topTracks[topTracks.length - 1].artists[0].name}`,
-            category: 'general'
+            category: 'general',
+            correctImage: topTracks[0].album.images[0].url,
+            incorrectImage: topTracks[topTracks.length - 1].album.images[0].url
         }
         quizArray.push(questionObject)
 
@@ -45,7 +49,9 @@ export const Quiz = {
             question: 'Which artist is more popular on Spotify?',
             correct: topArtists[maxIndex].name,
             incorrect: topArtists[minIndex].name,
-            category: 'general'
+            category: 'general',
+            correctImage: topArtists[maxIndex].images[0].url,
+            incorrectImage: topArtists[minIndex].images[0].url
         }
         quizArray.push(questionObject)
 
@@ -56,15 +62,22 @@ export const Quiz = {
         if (topArtists[randIndex1].popularity > topArtists[randIndex2].popularity) {
             var correct = topArtists[randIndex1].name
             var incorrect = topArtists[randIndex2].name
+            var correctImage = topArtists[randIndex1].images[0].url
+            var incorrectImage = topArtists[randIndex2].images[0].url
         } else {
             var correct = topArtists[randIndex2].name
             var incorrect = topArtists[randIndex1].name
+            var correctImage = topArtists[randIndex2].images[0].url
+            var incorrectImage = topArtists[randIndex1].images[0].url
+
         }
         questionObject = {
             question: 'Which artist is more popular on Spotify?',
             correct: correct,
             incorrect: incorrect,
-            category: 'general'
+            category: 'general',
+            correctImage: correctImage,
+            incorrectImage: incorrectImage
         }  
         quizArray.push(questionObject)
 
@@ -91,7 +104,9 @@ export const Quiz = {
             question: 'Which track is more popular on Spotify?',
             correct: `${topTracks[maxIndex].name} by ${topTracks[maxIndex].artists[0].name}`,
             incorrect: `${topTracks[minIndex].name} by ${topTracks[minIndex].artists[0].name}`,
-            category: 'general'
+            category: 'general',
+            correctImage: topTracks[maxIndex].album.images[0].url,
+            incorrectImage: topTracks[minIndex].album.images[0].url
         }
         quizArray.push(questionObject)
 
@@ -110,7 +125,9 @@ export const Quiz = {
             question: 'Which track is more popular on Spotify?',
             correct: `${topTracks[correct].name} by ${topTracks[correct].artists[0].name}`,
             incorrect: `${topTracks[incorrect].name} by ${topTracks[incorrect].artists[0].name}`,
-            category: 'general'
+            category: 'general',
+            correctImage: topTracks[correct].album.images[0].url,
+            incorrectImage: topTracks[incorrect].album.images[0].url
         }  
         quizArray.push(questionObject)
 
@@ -121,7 +138,9 @@ export const Quiz = {
             url: topTracks[randIndex1].preview_url,
             correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
             incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
-            category: 'track'
+            category: 'track',
+            correctImage: topTracks[randIndex1].album.images[0].url,
+            incorrectImage: topTracks[randIndex2].album.images[0].url
         }
         quizArray.push(questionObject)
 
@@ -131,7 +150,9 @@ export const Quiz = {
             url: topTracks[randIndex1].preview_url,
             correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
             incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
-            category: 'track'
+            category: 'track',
+            correctImage: topTracks[randIndex1].album.images[0].url,
+            incorrectImage: topTracks[randIndex2].album.images[0].url
         }
         quizArray.push(questionObject)
 
@@ -167,7 +188,9 @@ export const Quiz = {
             lyric: topLyrics[randIndex1].snippet_body,
             correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
             incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
-            category: 'lyric'
+            category: 'lyric',
+            correctImage: topTracks[randIndex1].album.images[0].url,
+            incorrectImage: topTracks[randIndex2].album.images[0].url
         }
         quizArray.push(questionObject)
 
@@ -181,7 +204,9 @@ export const Quiz = {
             lyric: topLyrics[randIndex1].snippet_body,
             correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
             incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
-            category: 'lyric'
+            category: 'lyric',
+            correctImage: topTracks[randIndex1].album.images[0].url,
+            incorrectImage: topTracks[randIndex2].album.images[0].url
         }
         quizArray.push(questionObject)
 
@@ -195,7 +220,9 @@ export const Quiz = {
             lyric: topLyrics[randIndex1].snippet_body,
             correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
             incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
-            category: 'lyric'
+            category: 'lyric',
+            correctImage: topTracks[randIndex1].album.images[0].url,
+            incorrectImage: topTracks[randIndex2].album.images[0].url
         }
         quizArray.push(questionObject)
 
