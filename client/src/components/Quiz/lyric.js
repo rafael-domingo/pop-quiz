@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
-export default function Lyric({question, correct, incorrect, lyric}) {
+export default function Lyric({question, correct, incorrect, lyric, randomNum}) {
    const dispatch = useDispatch()
    
     const divStyle = {
@@ -34,25 +34,51 @@ export default function Lyric({question, correct, incorrect, lyric}) {
         color: '#979797',
         fontSize: '2em'
     }
-    return (
-        <div style={divStyle}>
-            <div style={questionStyle}>
-                {question}
-            </div>    
-            <div style={lyricStyle}>
-                "{lyric}"
+    if (randomNum == 0) {
+        return (
+            <div style={divStyle}>
+                <div style={questionStyle}>
+                    {question}
+                </div>    
+                <div style={lyricStyle}>
+                    "{lyric}"
+                </div>
+                <div style={answerStyle} onClick={() => {
+                    dispatch(setCorrect())
+                    dispatch(setAnswered())
+                }}>
+                    {correct}
+                </div>
+                <div style={answerStyle} onClick={() => {
+                    dispatch(setAnswered())
+                }}>
+                    {incorrect}
+                </div>
             </div>
-            <div style={answerStyle} onClick={() => {
-                dispatch(setCorrect())
-                dispatch(setAnswered())
-            }}>
-                {correct}
+        )
+    } else {
+        return (
+            <div style={divStyle}>
+                <div style={questionStyle}>
+                    {question}
+                </div>    
+                <div style={lyricStyle}>
+                    "{lyric}"
+                </div>
+                <div style={answerStyle} onClick={() => {
+                    dispatch(setAnswered())
+                }}>
+                    {incorrect}
+                </div>
+                <div style={answerStyle} onClick={() => {
+                    dispatch(setCorrect())
+                    dispatch(setAnswered())
+                }}>
+                    {correct}
+                </div>
+             
             </div>
-            <div style={answerStyle} onClick={() => {
-                dispatch(setAnswered())
-            }}>
-                {incorrect}
-            </div>
-        </div>
-    )
+        )
+    }
+    
 }

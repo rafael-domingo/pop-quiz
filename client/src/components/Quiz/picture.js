@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
 
-export default function Picture({question, correct, incorrect, image}) {
+export default function Picture({question, correct, incorrect, image, randomNum}) {
     const dispatch = useDispatch()
 
     const divStyle = {
@@ -13,7 +13,7 @@ export default function Picture({question, correct, incorrect, image}) {
         flexWrap: 'wrap'
     }
     const questionStyle = {
-        fontSize: '5em',
+        fontSize: '5vw',
         width: '100%',
         fontWeight: 'bold'
     }
@@ -25,14 +25,14 @@ export default function Picture({question, correct, incorrect, image}) {
         alignItems: 'center'
     }
     const imgStyle = {
-        width: '300px',
-        height: '300px',
+        width: '25vw',
+        height: 'auto',
         borderRadius: '50%'
     }
     const answerStyle = {  
-        width: '600px',
-        height: '200px',
-        margin: '50px',
+        width: '50%',
+        height: 'auto',
+        margin: '5vw',
         border: '2px solid #979797',
         borderRadius: '20px',
         display: 'flex',
@@ -41,25 +41,51 @@ export default function Picture({question, correct, incorrect, image}) {
         color: '#979797',
         fontSize: '2em'
     }
-    return (
-        <div style={divStyle}>
-            <div style={questionStyle}>
-                {question}
-            </div>    
-            <div style={imgDivStyle}>
-                <img style={imgStyle} src={image} />
+    if (randomNum == 0) {
+        return (
+            <div style={divStyle}>
+                <div style={questionStyle}>
+                    {question}
+                </div>    
+                <div style={imgDivStyle}>
+                    <img style={imgStyle} src={image} />
+                </div>
+               <div style={answerStyle} onClick={() => {
+                    dispatch(setCorrect())
+                    dispatch(setAnswered())
+                }}>
+                    {correct}
+                </div>
+                <div style={answerStyle} onClick={() => {
+                    dispatch(setAnswered())
+                }}>
+                    {incorrect}
+                </div>
             </div>
-           <div style={answerStyle} onClick={() => {
-                dispatch(setCorrect())
-                dispatch(setAnswered())
-            }}>
-                {correct}
+        )
+    } else {
+        return (
+            <div style={divStyle}>
+                <div style={questionStyle}>
+                    {question}
+                </div>    
+                <div style={imgDivStyle}>
+                    <img style={imgStyle} src={image} />
+                </div>
+                <div style={answerStyle} onClick={() => {
+                    dispatch(setAnswered())
+                }}>
+                    {incorrect}
+                </div>
+               <div style={answerStyle} onClick={() => {
+                    dispatch(setCorrect())
+                    dispatch(setAnswered())
+                }}>
+                    {correct}
+                </div>
+             
             </div>
-            <div style={answerStyle} onClick={() => {
-                dispatch(setAnswered())
-            }}>
-                {incorrect}
-            </div>
-        </div>
-    )
+        )
+    }
+ 
 }

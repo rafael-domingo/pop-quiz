@@ -1,8 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { setView } from "../redux/user";
+
 export default function Profile()  {
     const artists = useSelector(state => state.user.topArtists)
     const tracks = useSelector(state => state.user.topTracks)
+    const dispatch = useDispatch()
     const [state, setState] = React.useState('Artists')
 
     const divStyle = {
@@ -60,9 +63,40 @@ export default function Profile()  {
     const textStyle = {
         textAlign: 'left'
     }
+    const buttonStyle = {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center', 
+        alignItems: 'center',
+        flexWrap: 'wrap'
+    }
+    const quizButtonStyle = {
+        fontSize: '2vw',
+        padding: '10px',
+        backgroundColor: '#1D9FB9',
+        width: '20%',
+        margin: '10px',
+        marginRight: '10px',      
+        borderRadius: '24px'
+    }
+    const logoutButtonStyle = {
+        fontSize: '2vw',
+        padding: '10px',
+        backgroundColor: '#1DB954',
+        width: '20%',
+        margin: '10px',      
+        marginLeft: '10px',
+        borderRadius: '24px'
+    }
     if (state == 'Artists') {
         return (
             <div style={divStyle}>
+            <div style={buttonStyle}>
+            <div style={quizButtonStyle} onClick={() => {
+                dispatch(setView('Home'))
+            }}>Take the quiz again</div>
+            <div style={logoutButtonStyle}>Logout of Spotify</div>
+            </div>
             <div style={headerStyle}>
                 Your Profile
             </div>
@@ -89,6 +123,12 @@ export default function Profile()  {
     } else if (state == 'Tracks') {
         return (
             <div style={divStyle}>
+                <div style={buttonStyle}>
+                <div style={quizButtonStyle} onClick={() => {
+                    dispatch(setView('Home'))
+                }}>Take the quiz again</div>
+                <div style={logoutButtonStyle}>Logout of Spotify</div>
+                </div>
                 <div style={headerStyle}>
                     Your Profile
                 </div>

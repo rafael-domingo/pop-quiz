@@ -1,9 +1,10 @@
+import e from 'cors';
 import React, { useState } from 'react';
 import ReactHowler from 'react-howler';
 import { useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
 
-export default function Track({question, correct, incorrect, track}) {
+export default function Track({question, correct, incorrect, track, randomNum}) {
     const dispatch = useDispatch()
     
     const [initialize, setInitialize] = useState(false)
@@ -37,30 +38,59 @@ export default function Track({question, correct, incorrect, track}) {
         fontSize: '2em'
     }
     if (initialize) {
-        return (
-            <div style={divStyle}>
-                <div style={questionStyle}>
-                    {question}
-                </div>    
-                <div style={playerStyle}>
-                    <ReactHowler src={track} playing={playing} loop={true} format={['mp3', 'aac']}/>
-                    <button onClick={() => setPlaying(true)}>Play</button>
-                    <button onClick={() => setPlaying(false)}>Pause</button>
-                </div>
-                <div style={answerStyle} onClick={() => {
-                dispatch(setCorrect())
-                dispatch(setAnswered())
-                }}>
-                    {correct}
-                 </div>
-                <div style={answerStyle} onClick={() => {
+        if (randomNum == 0) {
+            return (
+                <div style={divStyle}>
+                    <div style={questionStyle}>
+                        {question}
+                    </div>    
+                    <div style={playerStyle}>
+                        <ReactHowler src={track} playing={playing} loop={true} format={['mp3', 'aac']}/>
+                        <button onClick={() => setPlaying(true)}>Play</button>
+                        <button onClick={() => setPlaying(false)}>Pause</button>
+                    </div>
+                    <div style={answerStyle} onClick={() => {
+                    dispatch(setCorrect())
                     dispatch(setAnswered())
-                }}>
-                    {incorrect}
+                    }}>
+                        {correct}
+                     </div>
+                    <div style={answerStyle} onClick={() => {
+                        dispatch(setAnswered())
+                    }}>
+                        {incorrect}
+                    </div>
+                    
                 </div>
-                
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div style={divStyle}>
+                    <div style={questionStyle}>
+                        {question}
+                    </div>    
+                    <div style={playerStyle}>
+                        <ReactHowler src={track} playing={playing} loop={true} format={['mp3', 'aac']}/>
+                        <button onClick={() => setPlaying(true)}>Play</button>
+                        <button onClick={() => setPlaying(false)}>Pause</button>
+                    </div>
+                    <div style={answerStyle} onClick={() => {
+                        dispatch(setAnswered())
+                    }}>
+                        {incorrect}
+                    </div>
+                    <div style={answerStyle} onClick={() => {
+                    dispatch(setCorrect())
+                    dispatch(setAnswered())
+                    }}>
+                        {correct}
+                     </div>
+                   
+                    
+                </div>
+            )
+        }
+       
     } else {
         return (
             <div style={divStyle}>
