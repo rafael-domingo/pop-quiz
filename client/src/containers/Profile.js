@@ -44,14 +44,14 @@ export default function Profile()  {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        border: '2px solid #979797',
+        // border: '2px solid #979797',
         borderRadius: '1vw',
         textAlign: 'center',
         width: '60vw',        
         margin: '1vw',
         color: '#979797',
         fontWeight: 'bold',
-        fontSize: '3vw',
+        fontSize: '2vw',
         
     }
     const imgStyle = {
@@ -61,7 +61,8 @@ export default function Profile()  {
         marginRight: '5vw'
     }
     const textStyle = {
-        textAlign: 'left'
+        textAlign: 'left',
+        whiteSpace: 'nowrap',        
     }
     const buttonStyle = {
         width: '100%',
@@ -144,7 +145,7 @@ export default function Profile()  {
                         return (
                             <div style={itemStyle}>
                                 <img style ={imgStyle} src={track.album.images[0].url}/>
-                                <p style={textStyle}>{track.name}</p>
+                                <p style={textStyle}>{track.name} by {track.artists[0].name}</p>
                             </div>
                         )
                     })

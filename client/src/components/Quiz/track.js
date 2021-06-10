@@ -4,7 +4,7 @@ import ReactHowler from 'react-howler';
 import { useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
 
-export default function Track({question, correct, incorrect, track, randomNum}) {
+export default function Track({question, correct, incorrect, track, randomNum, correctImage, incorrectImage}) {
     const dispatch = useDispatch()
     
     const [initialize, setInitialize] = useState(false)
@@ -26,16 +26,26 @@ export default function Track({question, correct, incorrect, track, randomNum}) 
         width: '100%'
     }
     const answerStyle = {  
-        width: '50vw',
-        height: '200px',
-        margin: '50px',
-        border: '2px solid #979797',
-        borderRadius: '20px',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        border: '2px solid #979797',
+        borderRadius: '1vw',
+        textAlign: 'center',
+        width: '60vw',        
+        margin: '1vw',
         color: '#979797',
-        fontSize: '2em'
+        fontWeight: 'bold',
+        fontSize: '3vw',
+    }
+    const imgStyle = {
+        width: '10vw',
+        height: '10vw',
+        borderRadius: '1vw',
+        marginRight: '5vw'
+    }
+    const textStyle = {
+        textAlign: 'left'
     }
     if (initialize) {
         if (randomNum == 0) {
@@ -53,12 +63,14 @@ export default function Track({question, correct, incorrect, track, randomNum}) 
                     dispatch(setCorrect())
                     dispatch(setAnswered())
                     }}>
-                        {correct}
+                        <img style={imgStyle} src={correctImage}/>
+                        <p style={textStyle}>{correct}</p> 
                      </div>
                     <div style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
-                        {incorrect}
+                        <img style={imgStyle} src={incorrectImage}/>
+                        <p style={textStyle}>{incorrect}</p> 
                     </div>
                     
                 </div>
@@ -77,13 +89,15 @@ export default function Track({question, correct, incorrect, track, randomNum}) 
                     <div style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
-                        {incorrect}
+                        <img style={imgStyle} src={incorrectImage}/>
+                        <p style={textStyle}>{incorrect}</p> 
                     </div>
                     <div style={answerStyle} onClick={() => {
                     dispatch(setCorrect())
                     dispatch(setAnswered())
                     }}>
-                        {correct}
+                        <img style={imgStyle} src={correctImage}/>
+                        <p style={textStyle}>{correct}</p> 
                      </div>
                    
                     

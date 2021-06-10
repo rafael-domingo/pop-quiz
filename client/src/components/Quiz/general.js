@@ -22,16 +22,26 @@ export default function General({index}) {
         fontWeight: 'bold'
     }
     const answerStyle = {  
-        width: '50vw',
-        height: '200px',
-        margin: '50px',
-        border: '2px solid #979797',
-        borderRadius: '20px',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        border: '2px solid #979797',
+        borderRadius: '1vw',
+        textAlign: 'center',
+        width: '60vw',        
+        margin: '1vw',
         color: '#979797',
-        fontSize: '2em'
+        fontWeight: 'bold',
+        fontSize: '3vw',
+    }
+    const imgStyle = {
+        width: '10vw',
+        height: '10vw',
+        borderRadius: '1vw',
+        marginRight: '5vw'
+    }
+    const textStyle = {
+        textAlign: 'left'
     }
     if (question.category == 'general') {
         if (randomNum == 0) {
@@ -44,12 +54,14 @@ export default function General({index}) {
                         dispatch(setCorrect())
                         dispatch(setAnswered())
                     }}>
-                        {question.correct}
+                        <img style={imgStyle} src={question.correctImage}/>
+                        <p style={textStyle}>{question.correct}</p>
                     </div>
                     <div style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
-                        {question.incorrect}
+                        <img style={imgStyle} src={question.incorrectImage}/>
+                        <p style={textStyle}>{question.incorrect}</p>
                     </div>
                 </div>
             )
@@ -62,13 +74,15 @@ export default function General({index}) {
                     <div style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
-                        {question.incorrect}
+                        <img style={imgStyle} src={question.incorrectImage}/>
+                        <p style={textStyle}>{question.incorrect}</p>
                     </div>
                     <div style={answerStyle} onClick={() => {
                         dispatch(setCorrect())
                         dispatch(setAnswered())
                     }}>
-                        {question.correct}
+                        <img style={imgStyle} src={question.correctImage}/>
+                        <p style={textStyle}>{question.correct}</p>
                     </div>                   
                 </div>
             )
@@ -77,19 +91,19 @@ export default function General({index}) {
     } else if (question.category == 'track') {
         return (
             <div style={divStyle}>
-                <Track question={question.question} correct={question.correct} incorrect={question.incorrect} track={question.url} randomNum={randomNum} category={question.category}/>
+                <Track question={question.question} correct={question.correct} incorrect={question.incorrect} correctImage={question.correctImage} incorrectImage={question.incorrectImage} track={question.url} randomNum={randomNum} category={question.category}/>
             </div>
         )
     } else if (question.category == 'picture') {
         return (
             <div style={divStyle}>
-                <Picture question={question.question} correct={question.correct} incorrect={question.incorrect} image={question.image} randomNum={randomNum} category={question.category}/>
+                <Picture question={question.question} correct={question.correct} incorrect={question.incorrect} correctImage={question.correctImage} incorrectImage={question.incorrectImage} image={question.image} randomNum={randomNum} category={question.category}/>
             </div>
         )
     } else if (question.category == 'lyric') {
         return (
             <div style={divStyle}>
-                <Lyric question={question.question} correct={question.correct} incorrect={question.incorrect} lyric={question.lyric} randomNum={randomNum} category={question.category}/>
+                <Lyric question={question.question} correct={question.correct} incorrect={question.incorrect} correctImage={question.correctImage} incorrectImage={question.incorrectImage} lyric={question.lyric} randomNum={randomNum} category={question.category}/>
             </div>
         )
     }
