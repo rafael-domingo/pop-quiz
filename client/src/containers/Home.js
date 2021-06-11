@@ -7,9 +7,10 @@ import { motion } from "framer-motion";
 export default function Home() {
 
     const divStyle = {
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'rgba(0,0,0,0.7)',
         color: 'white',
         height: '100vh',
+        width: '100vw',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
