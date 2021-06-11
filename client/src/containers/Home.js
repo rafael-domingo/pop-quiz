@@ -3,6 +3,7 @@ import Background from '../components/Home/background';
 import { useDispatch } from "react-redux";
 import { Spotify } from '../util/Spotify'
 import { setNewReleases } from "../redux/user";
+import { motion } from "framer-motion";
 export default function Home() {
 
     const divStyle = {
@@ -52,9 +53,11 @@ export default function Home() {
                 <h1 style={titleStyle}>Pop Quiz</h1>
                 <p style={subtitleStyle}>how well do you know your own music?</p>
                 <a style={aStyle} href="http://localhost:5000/login">
-                    <div style={loginButton}>
+                    <motion.div 
+                        style={loginButton}
+                        whileHover={{ scale: 1.2 }}>
                         Login with Spotify
-                    </div>
+                    </motion.div>
                 </a>
             </div>
             

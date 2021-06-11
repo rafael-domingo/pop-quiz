@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setView } from '../redux/user';
+import { motion } from "framer-motion";
 export default function Loading() {
     const userName = useSelector(state => state.user.username)
     const profilePicture = useSelector(state => state.user.profilePicture)
@@ -17,13 +18,16 @@ export default function Loading() {
         borderRadius: '50%',
         height: '150px',
         width: '150px',
-        margin: '20px'
+        margin: '20px',
+        marginBottom: '50px',
+        marginTop: '50px'
     }
     const greetingStyle = {
         width: '100%',
         height: 'auto',
-        fontSize: '3vw',
-        fontWeight: 'bold'
+        fontSize: '5vw',
+        fontWeight: 'bold',
+        marginBottom: '50px'
     }
     const findingStyle = {
         display: 'flex',
@@ -40,34 +44,81 @@ export default function Loading() {
         color: '#979797',
         lineHeight: '0'
     }
+    const button = {
+        backgroundColor: 'rgba(29, 185, 84, 1)',
+        borderRadius: '24px',
+        padding: '20px', 
+        width: '35vw',
+        height: 'auto',
+        textAlign: 'center',
+        color: 'white',
+        cursor: 'pointer',
+        marginTop: '50px'
+    }
 
-    React.useEffect(() => {
-        setTimeout(() => {
-            dispatch(setView('Quiz'))
-        }, 5000) 
-    }) 
+    // Framer motion parameters
+    const list = {
+        hidden: {
+            opacity: 0
+        },
+        show: {
+            opacity: 1,
+            transition: {
+                delay: 1,
+                duration: 1,
+                staggerChildren: 1,
+                type: 'spring'
+            }
+        }
+    } 
+    
+    const childVariants = {
+    hidden: {
+        opacity: 0,
+        transition: {
+            duration: 1,
+            type: 'spring',
+            }
+        },
+    show: {
+        opacity: 1,
+        transition: {
+            duration: 1,
+            type: 'spring',
+            }
+        }
+    }
+    // React.useEffect(() => {
+    //     setTimeout(() => {
+    //         dispatch(setView('Quiz'))
+    //     }, 10000) 
+    // }) 
 
     if (userName.length > 1) {
         return (
-            <div style={divStyle}>
-                <img src={profilePicture} style={profileStyle}/>
-                <div style={greetingStyle}>
+            <motion.div 
+                style={divStyle}
+                variants={list}
+                initial="hidden"
+                animate="show">
+                <motion.img variants={childVariants} src={profilePicture} style={profileStyle}/>
+                <motion.div variants={childVariants} style={greetingStyle}>
                     one sec, {userName}
-                </div>
-                <div style={greetingStyle}>
+                </motion.div>
+                <motion.div variants={childVariants} style={greetingStyle}>
                     we're analyzing your music
-                </div>
-                <div style={findingStyle}>
-                    <p style={findingText}>finding your top artists</p>
-                    <p style={findingText}>finding your top tracks</p>
-                    <p style={findingText}>obtaining lyrics</p>
-                    <p style={findingText}>just a little bit longer</p>
-                    <p style={findingText}>creating your quiz</p>
-                    <p style={findingText}>ready?</p>
-                </div>
-
+                </motion.div>
+                {/* <motion.div variants={list} style={findingStyle} initial="hidden" animate="show"> */}
+                    <motion.p variants={childVariants} style={findingText}>finding your top artists</motion.p>
+                    <motion.p variants={childVariants} style={findingText}>finding your top tracks</motion.p>
+                    <motion.p variants={childVariants} style={findingText}>obtaining lyrics</motion.p>
+                    <motion.p variants={childVariants} style={findingText}>just a little bit longer</motion.p>
+                    <motion.p variants={childVariants} style={findingText}>creating your quiz</motion.p>
+                    <motion.p variants={childVariants} style={findingText}>ready?</motion.p>
+                {/* </motion.div> */}
+                <motion.div variants={childVariants} whileHover={{ scale: 1.2 }} style={button} onClick={() => dispatch(setView('Quiz'))}>Let's Go</motion.div>
              
-            </div>
+            </motion.div>
         )
     } else {
         return (
