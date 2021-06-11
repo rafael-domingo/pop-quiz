@@ -1,5 +1,8 @@
 import React from 'react'
 import Background from '../components/Home/background';
+import { useDispatch } from "react-redux";
+import { Spotify } from '../util/Spotify'
+import { setNewReleases } from "../redux/user";
 export default function Home() {
 
     const divStyle = {
@@ -36,7 +39,12 @@ export default function Home() {
         display: 'flex',
         justifyContent: 'center'
     }
-
+    const dispatch = useDispatch()
+    React.useEffect(() => {
+        Spotify.getCredentials().then(response => {
+            Spotify.getNewReleases(response.access_token).then(response => dispatch(setNewReleases(response)))
+          })
+    })
     return (
         <div style={divStyle}>
             <Background/>

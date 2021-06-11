@@ -5,7 +5,7 @@ import QuizGame from './containers/Quiz';
 import { Quiz } from '../src/util/Quiz';
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases, setView } from '../src/redux/user'
+import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setView } from '../src/redux/user'
 import Home from './containers/Home';
 import Loading from './containers/Loading';
 import Results from './containers/Results';
@@ -27,9 +27,6 @@ function App() {
       var token = callback[0].split('=')
       token = token[1]
       dispatch(setAccessToken(token))
-      Spotify.getCredentials().then(response => {
-        Spotify.getNewReleases(response.access_token).then(response => dispatch(setNewReleases(response)))
-      })
 
       // Get User profile info with access token
       Spotify.getUser(token).then(response => {
