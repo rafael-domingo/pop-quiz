@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setView } from "../redux/user";
-
+import { motion, AnimatePresence } from "framer-motion";
 export default function Profile()  {
     const artists = useSelector(state => state.user.topArtists)
     const tracks = useSelector(state => state.user.topTracks)
@@ -78,7 +78,8 @@ export default function Profile()  {
         width: '20%',
         margin: '10px',
         marginRight: '10px',      
-        borderRadius: '24px'
+        borderRadius: '24px',
+        cursor: 'pointer'
     }
     const logoutButtonStyle = {
         fontSize: '2vw',
@@ -87,16 +88,47 @@ export default function Profile()  {
         width: '20%',
         margin: '10px',      
         marginLeft: '10px',
-        borderRadius: '24px'
+        borderRadius: '24px',
+        cursor: 'pointer'
+    }
+
+    // Framer motion parameters
+    const variants = {
+        hidden: {
+            opacity: 0,
+            x: '100vw',
+            transition: {
+                duration: 1, 
+                type: 'spring'
+            }
+        },
+        show: {
+            opacity: 1,
+            x: '0vw',
+            transition: {
+                duration: 1, 
+                type: 'spring',
+                ease: 'easeInOut'
+            }
+        },
+        exit: {
+            opacity: 1,
+            x: '100vw',
+            transition: {
+                duration: 5,
+                type: 'spring'
+            }
+        }
     }
     if (state == 'Artists') {
         return (
-            <div style={divStyle}>
+        <AnimatePresence exitBeforeEnter>
+            <motion.div initial={{opacity: 0}} animate={{opacity: 1}} style={divStyle}>
             <div style={buttonStyle}>
-            <div style={quizButtonStyle} onClick={() => {
-                dispatch(setView('Home'))
-            }}>Take the quiz again</div>
-            <div style={logoutButtonStyle}>Logout of Spotify</div>
+            <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} style={quizButtonStyle} onClick={() => {
+                dispatch(setView('Loading'))
+            }}>Take the quiz again</motion.div>
+            <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} style={logoutButtonStyle}>Logout of Spotify</motion.div>
             </div>
             <div style={headerStyle}>
                 Your Profile
@@ -104,38 +136,40 @@ export default function Profile()  {
             <div style={selectedNavStyle}>
                 Artists
             </div>
-            <div style={navStyle} onClick={() => setState('Tracks')}>
+            <motion.div style={navStyle} whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} onClick={() => setState('Tracks')}>
                 Tracks
-            </div>
+            </motion.div>
             <div style={listStyle}>
                 {
                     artists.map((artist) => {
                         return (
-                            <div style={itemStyle}>
+                            <motion.div variants={variants} initial="hidden" animate="show" exit="exit" key={artist.id} style={itemStyle}>
                                 <img style ={imgStyle} src={artist.images[0].url}/>
                                 <p style={textStyle}>{artist.name}</p>
-                            </div>
+                            </motion.div>
                         )
                     })
                 }
             </div>
-            </div>
+            </motion.div>
+        </AnimatePresence>
         )
     } else if (state == 'Tracks') {
         return (
-            <div style={divStyle}>
+        <AnimatePresence exitBeforeEnter>
+            <motion.div initial={{opacity: 0}} animate={{opacity: 1}} style={divStyle}>
                 <div style={buttonStyle}>
-                <div style={quizButtonStyle} onClick={() => {
-                    dispatch(setView('Home'))
-                }}>Take the quiz again</div>
-                <div style={logoutButtonStyle}>Logout of Spotify</div>
+                <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} style={quizButtonStyle} onClick={() => {
+                    dispatch(setView('Loading'))
+                }}>Take the quiz again</motion.div>
+                <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} style={logoutButtonStyle}>Logout of Spotify</motion.div>
                 </div>
                 <div style={headerStyle}>
                     Your Profile
                 </div>
-                <div style={navStyle} onClick={() => setState('Artists')}>
+                <motion.div style={navStyle} whileHover={{scale: 1.2}} whileTap={{ scale: 0.8}} onClick={() => setState('Artists')}>
                     Artists
-                </div>
+                </motion.div>
                 <div style={selectedNavStyle}>
                     Tracks
                 </div>
@@ -143,15 +177,16 @@ export default function Profile()  {
                 {
                     tracks.map((track) => {
                         return (
-                            <div style={itemStyle}>
+                            <motion.div variants={variants} initial="hidden" animate="show" exit="exit" key={track.id} div style={itemStyle}>
                                 <img style ={imgStyle} src={track.album.images[0].url}/>
                                 <p style={textStyle}>{track.name} by {track.artists[0].name}</p>
-                            </div>
+                            </motion.div>
                         )
                     })
                 }
             </div>
-            </div>
+            </motion.div>
+        </AnimatePresence>
         )
     }
   

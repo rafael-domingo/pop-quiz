@@ -4,6 +4,7 @@ import Picture from './picture';
 import Track from './track';
 import { useSelector, useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
+import { motion } from "framer-motion";
 export default function General({index}) {
    const question = useSelector(state => state.user.quiz[index])
    const dispatch = useDispatch()
@@ -43,10 +44,29 @@ export default function General({index}) {
     const textStyle = {
         textAlign: 'left'
     }
+
+    // Framer motion parameters
+    const variants = {
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 1, 
+                type: 'spring'
+            }
+        },
+        show: {
+            opacity: 1,
+            transition: {
+                duration: 1, 
+                type: 'spring', 
+                ease: 'easeInOut'
+            }
+        }
+    }
     if (question.category == 'general') {
         if (randomNum == 0) {
             return (
-                <div style={divStyle}>
+                <motion.div variants={variants} initial="hidden" animate="show" style={divStyle}>
                     <div style={questionStyle}>
                         {question.question}
                     </div>    
@@ -63,11 +83,11 @@ export default function General({index}) {
                         <img style={imgStyle} src={question.incorrectImage}/>
                         <p style={textStyle}>{question.incorrect}</p>
                     </div>
-                </div>
+                </motion.div>
             )
         } else {
             return (
-                <div style={divStyle}>
+                <motion.div variants={variants} initial="hidden" animate="show" style={divStyle}>
                     <div style={questionStyle}>
                         {question.question}
                     </div>    
@@ -84,7 +104,7 @@ export default function General({index}) {
                         <img style={imgStyle} src={question.correctImage}/>
                         <p style={textStyle}>{question.correct}</p>
                     </div>                   
-                </div>
+                </motion.div>
             )
         }
        

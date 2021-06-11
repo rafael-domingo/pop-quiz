@@ -1,10 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setView } from '../redux/user';
+import { Quiz } from '../util/Quiz';
+import { setQuiz, resetQuiz } from '../redux/user';
+
 import { motion } from "framer-motion";
 export default function Loading() {
     const userName = useSelector(state => state.user.username)
     const profilePicture = useSelector(state => state.user.profilePicture)
+    const artists = useSelector(state => state.user.topArtists);
+    const tracks = useSelector(state => state.user.topTracks);
+    const lyrics = useSelector(state => state.user.topLyrics);
+    const view = useSelector(state => state.user.view)
     const dispatch = useDispatch()
     const divStyle = {
         display: 'flex',
@@ -88,11 +95,13 @@ export default function Loading() {
             }
         }
     }
-    // React.useEffect(() => {
-    //     setTimeout(() => {
-    //         dispatch(setView('Quiz'))
-    //     }, 10000) 
-    // }) 
+
+    // Generate quiz once artists, tracks, and lyrics are obtained
+    if (artists.length > 1 && tracks.length > 1 && lyrics.length > 1) {
+        const output = Quiz.generateQuiz(artists, tracks, lyrics)
+        dispatch(setQuiz(output))
+        dispatch(resetQuiz())
+      }
 
     if (userName.length > 1) {
         return (
@@ -116,7 +125,7 @@ export default function Loading() {
                     <motion.p variants={childVariants} style={findingText}>creating your quiz</motion.p>
                     <motion.p variants={childVariants} style={findingText}>ready?</motion.p>
                 {/* </motion.div> */}
-                <motion.div variants={childVariants} whileHover={{ scale: 1.2 }} style={button} onClick={() => dispatch(setView('Quiz'))}>Let's Go</motion.div>
+                <motion.div variants={childVariants} whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={button} onClick={() => dispatch(setView('Quiz'))}>Let's Go</motion.div>
              
             </motion.div>
         )

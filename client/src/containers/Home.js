@@ -56,7 +56,8 @@ export default function Home() {
                 <a style={aStyle} href="http://localhost:5000/login">
                     <motion.div 
                         style={loginButton}
-                        whileHover={{ scale: 1.2 }}>
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{scale: 0.8}}>
                         Login with Spotify
                     </motion.div>
                 </a>

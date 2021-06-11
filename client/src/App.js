@@ -53,10 +53,10 @@ function App() {
   }, [])
 
   // Generate quiz once artists, tracks, and lyrics are obtained
-  if (artists.length > 1 && tracks.length > 1 && lyrics.length > 1) {
-    const output = Quiz.generateQuiz(artists, tracks, lyrics)
-    dispatch(setQuiz(output))
-  }
+  // if (artists.length > 1 && tracks.length > 1 && lyrics.length > 1) {
+  //   const output = Quiz.generateQuiz(artists, tracks, lyrics)
+  //   dispatch(setQuiz(output))
+  // }
  
   if (view == 'Home') {
     return (

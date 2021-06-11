@@ -52,9 +52,13 @@ export const userSlice = createSlice({
         },
         setView: (state, action) => {
             state.view = action.payload
+        },
+        resetQuiz: (state) => {
+            state.correct = 0
+            state.answered = 0
         }
     }
 })
 
-export const { setUsername, setProfilePicture, setAuthorization, setAccessToken, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases, setCorrect, setAnswered, setView } = userSlice.actions;
+export const { setUsername, setProfilePicture, setAuthorization, setAccessToken, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setNewReleases, setCorrect, setAnswered, setView, resetQuiz } = userSlice.actions;
 export default userSlice.reducer
