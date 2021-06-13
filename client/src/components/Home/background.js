@@ -54,7 +54,7 @@ export default function Background() {
                 {
                     newReleases.map((item) => {
                         return (
-                            <motion.img variants={variants} initial="hidden" animate="show" exit="hidden" style={imgStyle} src={item.images[0].url} />
+                            <motion.img variants={variants} initial="hidden" animate="show" exit="hidden" style={imgStyle} key={item.id} src={item.images[0].url} />
                         )
                     })
                 }
