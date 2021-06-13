@@ -4,10 +4,10 @@ import ReactHowler from 'react-howler';
 import { useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
 import { AnimatePresence, motion } from 'framer-motion';
-
+import Play from "../../assets/play.png";
+import Pause from "../../assets/pause.png";
 export default function Track({question, correct, incorrect, track, randomNum, correctImage, incorrectImage}) {
     const dispatch = useDispatch()
-    
     const [initialize, setInitialize] = useState(false)
     const [playing, setPlaying] = useState(false)
     const divStyle = {
@@ -48,6 +48,14 @@ export default function Track({question, correct, incorrect, track, randomNum, c
     const textStyle = {
         textAlign: 'left'
     }
+    const playbackStyle = {
+        width: '10vw',
+        height: '10vw',
+        margin: '10vw',
+        borderRadius: '50%',
+        border: '3px solid white',
+        padding: '5vw'
+    }
 
      // Framer motion parameters
      const variants = {
@@ -62,12 +70,29 @@ export default function Track({question, correct, incorrect, track, randomNum, c
             opacity: 1,
             transition: {
                 duration: 1, 
-                type: 'spring', 
+                type: 'tween', 
                 ease: 'easeInOut'
             }
         }
     }
-    if (initialize) {
+    const playVariants = {
+        active: {
+            opacity: [1, 1, 1, 1, 1, 1, 1],
+            scale: [1, 1.2, 1, 0.8, 1, 1.2, 1, 0.8, 1],
+            transition: {
+                repeat: Infinity,
+                duration: 2,
+                ease: 'linear',
+                
+            }
+        },
+        hover: {
+            opacity: 1
+        },
+        inactive: {
+            opacity: 1,
+        }
+    }
         if (randomNum == 0) {
             return (
                 <AnimatePresence exitBeforeEnter>
@@ -78,8 +103,7 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                     </div>    
                     <div style={playerStyle}>
                         <ReactHowler src={track} playing={playing} loop={true} format={['mp3', 'aac']}/>
-                        <button onClick={() => setPlaying(true)}>Play</button>
-                        <button onClick={() => setPlaying(false)}>Pause</button>
+                        <motion.img whileHover={{opacity: 1, scale: 1, rotate: 0}} animate={playing ? "active" : "inactive"} variants={playVariants} style={playbackStyle} src={playing ? Pause : Play} onClick={() => setPlaying(!playing)}/>
                     </div>
                     <div style={answerStyle} onClick={() => {
                     dispatch(setCorrect())
@@ -109,8 +133,7 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                     </div>    
                     <div style={playerStyle}>
                         <ReactHowler src={track} playing={playing} loop={true} format={['mp3', 'aac']}/>
-                        <button onClick={() => setPlaying(true)}>Play</button>
-                        <button onClick={() => setPlaying(false)}>Pause</button>
+                        <motion.img whileHover={{opacity: 1, scale: 1, rotate: 0}} animate={playing ? "active" : "inactive"} variants={playVariants} style={playbackStyle} src={playing ? Pause : Play} onClick={() => setPlaying(!playing)}/>
                     </div>
                     <div style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
@@ -132,13 +155,6 @@ export default function Track({question, correct, incorrect, track, randomNum, c
 
             )
         }
-       
-    } else {
-        return (
-            <div style={divStyle}>
-                <button onClick={() => setInitialize(true)}>Initialize Me</button>
-            </div>
-        )
-    }
+
     
 }
