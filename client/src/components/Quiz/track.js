@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ReactHowler from 'react-howler';
 import { useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Track({question, correct, incorrect, track, randomNum, correctImage, incorrectImage}) {
     const dispatch = useDispatch()
@@ -47,10 +48,31 @@ export default function Track({question, correct, incorrect, track, randomNum, c
     const textStyle = {
         textAlign: 'left'
     }
+
+     // Framer motion parameters
+     const variants = {
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 1, 
+                type: 'spring'
+            }
+        },
+        show: {
+            opacity: 1,
+            transition: {
+                duration: 1, 
+                type: 'spring', 
+                ease: 'easeInOut'
+            }
+        }
+    }
     if (initialize) {
         if (randomNum == 0) {
             return (
-                <div style={divStyle}>
+                <AnimatePresence exitBeforeEnter>
+
+                <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
                     <div style={questionStyle}>
                         {question}
                     </div>    
@@ -73,11 +95,15 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                         <p style={textStyle}>{incorrect}</p> 
                     </div>
                     
-                </div>
+                </motion.div>
+                </AnimatePresence>
+
             )
         } else {
             return (
-                <div style={divStyle}>
+                <AnimatePresence exitBeforeEnter>
+
+                <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
                     <div style={questionStyle}>
                         {question}
                     </div>    
@@ -101,7 +127,9 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                      </div>
                    
                     
-                </div>
+                </motion.div>
+                </AnimatePresence>
+
             )
         }
        

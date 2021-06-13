@@ -4,12 +4,11 @@ import Picture from './picture';
 import Track from './track';
 import { useSelector, useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 export default function General({index}) {
    const question = useSelector(state => state.user.quiz[index])
    const dispatch = useDispatch()
    const randomNum = Math.floor(Math.random() * 2)
-
     const divStyle = {
         color: 'white',
         display: 'flex',
@@ -63,68 +62,85 @@ export default function General({index}) {
             }
         }
     }
+
+
     if (question.category == 'general') {
         if (randomNum == 0) {
             return (
-                <motion.div variants={variants} initial="hidden" animate="show" style={divStyle}>
-                    <div style={questionStyle}>
+                <AnimatePresence exitBeforeEnter>
+                <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
+                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={questionStyle}>
                         {question.question}
-                    </div>    
-                    <div style={answerStyle} onClick={() => {
+                    </motion.div>    
+                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setCorrect())
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={question.correctImage}/>
                         <p style={textStyle}>{question.correct}</p>
-                    </div>
-                    <div style={answerStyle} onClick={() => {
+                    </motion.div>
+                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={question.incorrectImage}/>
                         <p style={textStyle}>{question.incorrect}</p>
-                    </div>
+                    </motion.div>
                 </motion.div>
+                </AnimatePresence>
+
             )
         } else {
             return (
-                <motion.div variants={variants} initial="hidden" animate="show" style={divStyle}>
-                    <div style={questionStyle}>
+                <AnimatePresence exitBeforeEnter>
+                <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
+                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={questionStyle}>
                         {question.question}
-                    </div>    
-                    <div style={answerStyle} onClick={() => {
+                    </motion.div>    
+                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={question.incorrectImage}/>
                         <p style={textStyle}>{question.incorrect}</p>
-                    </div>
-                    <div style={answerStyle} onClick={() => {
+                    </motion.div>
+                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setCorrect())
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={question.correctImage}/>
                         <p style={textStyle}>{question.correct}</p>
-                    </div>                   
+                    </motion.div>                   
                 </motion.div>
+                </AnimatePresence>
+
             )
         }
        
     } else if (question.category == 'track') {
         return (
-            <div style={divStyle}>
+            <AnimatePresence exitBeforeEnter>
+            <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={divStyle}>
                 <Track question={question.question} correct={question.correct} incorrect={question.incorrect} correctImage={question.correctImage} incorrectImage={question.incorrectImage} track={question.url} randomNum={randomNum} category={question.category}/>
-            </div>
+            </motion.div>
+            </AnimatePresence>
+
         )
     } else if (question.category == 'picture') {
         return (
-            <div style={divStyle}>
+            <AnimatePresence exitBeforeEnter>
+            <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
                 <Picture question={question.question} correct={question.correct} incorrect={question.incorrect} correctImage={question.correctImage} incorrectImage={question.incorrectImage} image={question.image} randomNum={randomNum} category={question.category}/>
-            </div>
+            </motion.div>
+            </AnimatePresence>
+
         )
     } else if (question.category == 'lyric') {
         return (
-            <div style={divStyle}>
+            <AnimatePresence exitBeforeEnter>
+            <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
                 <Lyric question={question.question} correct={question.correct} incorrect={question.incorrect} correctImage={question.correctImage} incorrectImage={question.incorrectImage} lyric={question.lyric} randomNum={randomNum} category={question.category}/>
-            </div>
+            </motion.div>
+            </AnimatePresence>
+
         )
     }
    

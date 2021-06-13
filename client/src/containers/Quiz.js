@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from 'framer-motion';
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import General from '../components/Quiz/general';
@@ -12,19 +13,37 @@ export default function Quiz() {
         color: 'white'
         
     }
+    const variants = {
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 1
+            }
+        },
+        show: {
+            opacity: 1,
+            transition: {
+                duration: 1
+            }
+        }
+    }
     if (quiz.length > 1 && answered <= 12) {
         console.log(quiz[answered].question)
         return (
-            <div style={divStyle}>           
+            <AnimatePresence exitBeforeEnter>
+            <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>           
                 <Score />
-                <General index={answered}/>
-            </div>
+                <General index={answered} key={answered}/>
+            </motion.div>
+            </AnimatePresence>
         )
     } else {
         return (
-            <div style={divStyle}>
+            <AnimatePresence exitBeforeEnter>
+            <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
                 <Results />
-            </div>
+            </motion.div>
+            </AnimatePresence>
         )
         
     }

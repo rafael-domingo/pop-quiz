@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setView } from '../redux/user';
-
+import { motion, AnimatePresence } from "framer-motion";
 export default function Results() {
     const correct = useSelector(state => state.user.correct)
     const answered = useSelector(state => state.user.answered)
@@ -71,8 +71,23 @@ export default function Results() {
         border: '1px solid white',
         borderRadius: '24px'
     }
+    const variants = {
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 1
+            }
+        },
+        show: {
+            opacity: 1,
+            transition: {
+                duration: 1
+            }
+        }
+    }
     return (
-        <div style={divStyle}>
+        <AnimatePresence exitBeforeEnter>            
+        <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
             <div style={responseStyle}>
                 {response}
             </div>
@@ -86,6 +101,8 @@ export default function Results() {
                 <div style={logoutButtonStyle}>Logout of Spotify</div>
                 <div style={profileButtonStyle} onClick={() => dispatch(setView('Profile'))}>Your Spotify Profile</div>
             </div>
-        </div>
+        </motion.div>
+        </AnimatePresence>
+
     )
 }

@@ -4,7 +4,7 @@ import { setView } from '../redux/user';
 import { Quiz } from '../util/Quiz';
 import { setQuiz, resetQuiz } from '../redux/user';
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 export default function Loading() {
     const userName = useSelector(state => state.user.username)
     const profilePicture = useSelector(state => state.user.profilePicture)
@@ -66,7 +66,10 @@ export default function Loading() {
     // Framer motion parameters
     const list = {
         hidden: {
-            opacity: 0
+            opacity: 0,
+            transition: {
+                duration: 1
+            }
         },
         show: {
             opacity: 1,
@@ -105,11 +108,14 @@ export default function Loading() {
 
     if (userName.length > 1) {
         return (
+            <AnimatePresence exitBeforeEnter>
+
             <motion.div 
                 style={divStyle}
                 variants={list}
                 initial="hidden"
-                animate="show">
+                animate="show"
+                exit="hidden">
                 <motion.img variants={childVariants} src={profilePicture} style={profileStyle}/>
                 <motion.div variants={childVariants} style={greetingStyle}>
                     one sec, {userName}
@@ -128,6 +134,7 @@ export default function Loading() {
                 <motion.div variants={childVariants} whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={button} onClick={() => dispatch(setView('Quiz'))}>Let's Go</motion.div>
              
             </motion.div>
+            </AnimatePresence>
         )
     } else {
         return (

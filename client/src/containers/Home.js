@@ -3,7 +3,7 @@ import Background from '../components/Home/background';
 import { useDispatch } from "react-redux";
 import { Spotify } from '../util/Spotify'
 import { setNewReleases } from "../redux/user";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 export default function Home() {
 
     const divStyle = {
@@ -41,6 +41,17 @@ export default function Home() {
         display: 'flex',
         justifyContent: 'center'
     }
+
+    // Framer motion parameters
+    const variants = {
+        hidden: {
+            opacity: 0,            
+        },
+        show: {
+            opacity: 1
+        }
+    }
+
     const dispatch = useDispatch()
     React.useEffect(() => {
         Spotify.getCredentials().then(response => {
@@ -48,9 +59,11 @@ export default function Home() {
           })
     })
     return (
-        <div style={divStyle}>
+        <AnimatePresence exitBeforeEnter>
+
+        <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
             <Background/>
-            <div style={headerStyle}>
+            <motion.div style={headerStyle}>
                 <h1 style={titleStyle}>Pop Quiz</h1>
                 <p style={subtitleStyle}>how well do you know your own music?</p>
                 <a style={aStyle} href="http://localhost:5000/login">
@@ -61,9 +74,11 @@ export default function Home() {
                         Login with Spotify
                     </motion.div>
                 </a>
-            </div>
+            </motion.div>
             
             
-        </div>
+        </motion.div>
+        </AnimatePresence>
+
     )
 }
