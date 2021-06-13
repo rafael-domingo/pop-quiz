@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Spotify } from '../util/Spotify'
 import { setNewReleases } from "../redux/user";
 import { AnimatePresence, motion } from "framer-motion";
+import fetch from 'node-fetch';
 export default function Home() {
 
     const divStyle = {
@@ -52,6 +53,14 @@ export default function Home() {
         }
     }
 
+    const login = () => {
+        return fetch('/login')
+        .then(response => response.json())
+        .then(data => {
+            window.location.assign(data)
+        })
+    }
+
     const dispatch = useDispatch()
     React.useEffect(() => {
         Spotify.getCredentials().then(response => {
@@ -66,7 +75,7 @@ export default function Home() {
             <motion.div style={headerStyle}>
                 <h1 style={titleStyle}>Pop Quiz</h1>
                 <p style={subtitleStyle}>how well do you know your own music?</p>
-                <a style={aStyle} href="http://localhost:5000/login">
+                <a style={aStyle} onClick={() => login()}>
                     <motion.div 
                         style={loginButton}
                         whileHover={{ scale: 1.2 }}

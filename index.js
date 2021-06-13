@@ -26,7 +26,7 @@ app.get('/login', (req, res) => {
     const url = 'https://accounts.spotify.com/authorize?' + response_type + '&' + id + '&' + '&' + scope + '&' + uri + '&' + dialog;
     
     // Redirect url to Spotify Auth
-    res.redirect(url)
+    res.json(url)
 })
 
 app.post('/user', (req, res) => {
