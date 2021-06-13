@@ -25,13 +25,13 @@ export default function Picture({question, correct, incorrect, image, randomNum}
         alignItems: 'center'
     }
     const imgStyle = {
-        width: '25vw',
+        width: '30vw',
         height: 'auto',
         borderRadius: '50%'
     }
     const answerStyle = {  
-        width: '50%',
-        height: 'auto',
+        width: '80vw',
+        height: '15vw',
         margin: '5vw',
         border: '2px solid #979797',
         borderRadius: '20px',
@@ -39,7 +39,9 @@ export default function Picture({question, correct, incorrect, image, randomNum}
         justifyContent: 'center',
         alignItems: 'center',
         color: '#979797',
-        fontSize: '2em'
+        fontSize: '5vw',
+        padding: '3vw',
+        cursor: 'pointer'
     }
     if (randomNum == 0) {
         return (

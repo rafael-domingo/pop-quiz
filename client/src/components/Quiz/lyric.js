@@ -12,13 +12,13 @@ export default function Lyric({question, correct, incorrect, lyric, randomNum, c
         flexWrap: 'wrap'
     }
     const questionStyle = {
-        fontSize: '5em',
+        fontSize: '5vw',
         width: '100%',
         fontWeight: 'bold'
     }
     const lyricStyle = {
         width: '80%',
-        fontSize: '4em',
+        fontSize: '5vw',
         fontStyle: 'italic',
         margin: '50px'
     }
@@ -29,15 +29,16 @@ export default function Lyric({question, correct, incorrect, lyric, randomNum, c
         border: '2px solid #979797',
         borderRadius: '1vw',
         textAlign: 'center',
-        width: '60vw',        
+        width: '80vw',        
         margin: '1vw',
         color: '#979797',
         fontWeight: 'bold',
         fontSize: '3vw',
+        cursor: 'pointer'
     }
     const imgStyle = {
-        width: '10vw',
-        height: '10vw',
+        width: '20vw',
+        height: '20vw',
         borderRadius: '1vw',
         marginRight: '5vw'
     }

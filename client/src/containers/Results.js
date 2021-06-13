@@ -21,50 +21,53 @@ export default function Results() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        marginTop: '10vw'
     }
     const responseStyle = {
-        fontSize: '5vw',
+        fontSize: '10vw',
         width: '100%',
         fontWeight: 'bold'
     }
     const scoreStyle = {
-        fontSize: '4vw',
+        fontSize: '20vw',
         width: '100%',
-        color: '#979797'
+        color: '#979797',
+        marginTop: '10vw'
     }
     const buttonStyle = {
         width: '100%',
         display: 'flex',
         justifyContent: 'center', 
         alignItems: 'center',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        margin: '5vw'
     }
     const quizButtonStyle = {
-        fontSize: '2vw',
+        fontSize: '4vw',
         padding: '10px',
         backgroundColor: '#1D9FB9',
-        width: '35%',
+        width: '50vw',
         margin: '10px',
         marginLeft: '10%',
         marginRight: '10%',
         borderRadius: '24px'
     }
     const logoutButtonStyle = {
-        fontSize: '2vw',
+        fontSize: '4vw',
         padding: '10px',
         backgroundColor: '#1DB954',
-        width: '35%',
+        width: '50vw',
         margin: '10px',
         marginLeft: '10%',
         marginRight: '10%',
         borderRadius: '24px'
     }
     const profileButtonStyle = {
-        fontSize: '2vw',
+        fontSize: '4vw',
         padding: '10px',
         backgroundColor: 'none',
-        width: '35%',
+        width: '50vw',
         margin: '10px',
         marginLeft: '10%',
         marginRight: '10%',
@@ -96,9 +99,9 @@ export default function Results() {
             </div>
             <div style={buttonStyle}>
                 <div style={quizButtonStyle} onClick={() => {
-                    dispatch(setView('Home'))
+                    dispatch(setView('Loading'))
                 }}>Take the quiz again</div>
-                <div style={logoutButtonStyle}>Logout of Spotify</div>
+                <div onClick={() => dispatch(setView('Home'))} style={logoutButtonStyle}>Logout of Spotify</div>
                 <div style={profileButtonStyle} onClick={() => dispatch(setView('Profile'))}>Your Spotify Profile</div>
             </div>
         </motion.div>

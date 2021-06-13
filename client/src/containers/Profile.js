@@ -128,7 +128,7 @@ export default function Profile()  {
             <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} style={quizButtonStyle} onClick={() => {
                 dispatch(setView('Loading'))
             }}>Take the quiz again</motion.div>
-            <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} style={logoutButtonStyle}>Logout of Spotify</motion.div>
+            <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} onClick={() => dispatch(setView('Home'))} style={logoutButtonStyle}>Logout of Spotify</motion.div>
             </div>
             <div style={headerStyle}>
                 Your Profile
@@ -162,7 +162,7 @@ export default function Profile()  {
                 <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} style={quizButtonStyle} onClick={() => {
                     dispatch(setView('Loading'))
                 }}>Take the quiz again</motion.div>
-                <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} style={logoutButtonStyle}>Logout of Spotify</motion.div>
+                <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.8}} onClick={() => dispatch(setView('Home'))} style={logoutButtonStyle}>Logout of Spotify</motion.div>
                 </div>
                 <div style={headerStyle}>
                     Your Profile

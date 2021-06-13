@@ -19,7 +19,7 @@ export default function General({index}) {
     const questionStyle = {
         fontSize: '5vw',
         width: '100%',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     }
     const answerStyle = {  
         display: 'flex',
@@ -28,15 +28,16 @@ export default function General({index}) {
         border: '2px solid #979797',
         borderRadius: '1vw',
         textAlign: 'center',
-        width: '60vw',        
-        margin: '1vw',
+        width: '80vw',        
+        margin: '3vw',
         color: '#979797',
         fontWeight: 'bold',
         fontSize: '3vw',
+        cursor: 'pointer'
     }
     const imgStyle = {
-        width: '10vw',
-        height: '10vw',
+        width: '20vw',
+        height: '20vw',
         borderRadius: '1vw',
         marginRight: '5vw'
     }

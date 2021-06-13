@@ -33,15 +33,16 @@ export default function Track({question, correct, incorrect, track, randomNum, c
         border: '2px solid #979797',
         borderRadius: '1vw',
         textAlign: 'center',
-        width: '60vw',        
+        width: '80vw',        
         margin: '1vw',
         color: '#979797',
         fontWeight: 'bold',
         fontSize: '3vw',
+        cursor: 'pointer'
     }
     const imgStyle = {
-        width: '10vw',
-        height: '10vw',
+        width: '20vw',
+        height: '20vw',
         borderRadius: '1vw',
         marginRight: '5vw'
     }
@@ -54,7 +55,8 @@ export default function Track({question, correct, incorrect, track, randomNum, c
         margin: '10vw',
         borderRadius: '50%',
         border: '3px solid white',
-        padding: '5vw'
+        padding: '5vw',
+        cursor: 'pointer'
     }
 
      // Framer motion parameters
