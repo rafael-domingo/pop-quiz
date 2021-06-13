@@ -73,14 +73,14 @@ export default function General({index}) {
                     <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={questionStyle}>
                         {question.question}
                     </motion.div>    
-                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
+                    <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setCorrect())
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={question.correctImage}/>
                         <p style={textStyle}>{question.correct}</p>
                     </motion.div>
-                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
+                    <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={question.incorrectImage}/>
@@ -97,13 +97,13 @@ export default function General({index}) {
                     <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={questionStyle}>
                         {question.question}
                     </motion.div>    
-                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
+                    <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={question.incorrectImage}/>
                         <p style={textStyle}>{question.incorrect}</p>
                     </motion.div>
-                    <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
+                    <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setCorrect())
                         dispatch(setAnswered())
                     }}>

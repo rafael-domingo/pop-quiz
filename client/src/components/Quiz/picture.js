@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
 import { setCorrect, setAnswered } from "../../redux/user";
-
+import { motion } from "framer-motion";
 export default function Picture({question, correct, incorrect, image, randomNum}) {
     const dispatch = useDispatch()
 
@@ -52,17 +52,17 @@ export default function Picture({question, correct, incorrect, image, randomNum}
                 <div style={imgDivStyle}>
                     <img style={imgStyle} src={image} />
                 </div>
-               <div style={answerStyle} onClick={() => {
+               <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
                     dispatch(setCorrect())
                     dispatch(setAnswered())
                 }}>
                     {correct}
-                </div>
-                <div style={answerStyle} onClick={() => {
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
                     dispatch(setAnswered())
                 }}>
                     {incorrect}
-                </div>
+                </motion.div>
             </div>
         )
     } else {
@@ -74,17 +74,17 @@ export default function Picture({question, correct, incorrect, image, randomNum}
                 <div style={imgDivStyle}>
                     <img style={imgStyle} src={image} />
                 </div>
-                <div style={answerStyle} onClick={() => {
+                <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
                     dispatch(setAnswered())
                 }}>
                     {incorrect}
-                </div>
-               <div style={answerStyle} onClick={() => {
+                </motion.div>
+               <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
                     dispatch(setCorrect())
                     dispatch(setAnswered())
                 }}>
                     {correct}
-                </div>
+                </motion.div>
              
             </div>
         )

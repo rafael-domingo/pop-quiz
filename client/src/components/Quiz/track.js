@@ -34,7 +34,7 @@ export default function Track({question, correct, incorrect, track, randomNum, c
         borderRadius: '1vw',
         textAlign: 'center',
         width: '80vw',        
-        margin: '1vw',
+        margin: '3vw',
         color: '#979797',
         fontWeight: 'bold',
         fontSize: '3vw',
@@ -107,19 +107,19 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                         <ReactHowler src={track} playing={playing} loop={true} format={['mp3', 'aac']}/>
                         <motion.img whileHover={{opacity: 1, scale: 1, rotate: 0}} animate={playing ? "active" : "inactive"} variants={playVariants} style={playbackStyle} src={playing ? Pause : Play} onClick={() => setPlaying(!playing)}/>
                     </div>
-                    <div style={answerStyle} onClick={() => {
+                    <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
                     dispatch(setCorrect())
                     dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={correctImage}/>
                         <p style={textStyle}>{correct}</p> 
-                     </div>
-                    <div style={answerStyle} onClick={() => {
+                     </motion.div>
+                    <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={incorrectImage}/>
                         <p style={textStyle}>{incorrect}</p> 
-                    </div>
+                    </motion.div>
                     
                 </motion.div>
                 </AnimatePresence>
@@ -137,19 +137,19 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                         <ReactHowler src={track} playing={playing} loop={true} format={['mp3', 'aac']}/>
                         <motion.img whileHover={{opacity: 1, scale: 1, rotate: 0}} animate={playing ? "active" : "inactive"} variants={playVariants} style={playbackStyle} src={playing ? Pause : Play} onClick={() => setPlaying(!playing)}/>
                     </div>
-                    <div style={answerStyle} onClick={() => {
+                    <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
                         dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={incorrectImage}/>
                         <p style={textStyle}>{incorrect}</p> 
-                    </div>
-                    <div style={answerStyle} onClick={() => {
+                    </motion.div>
+                    <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
                     dispatch(setCorrect())
                     dispatch(setAnswered())
                     }}>
                         <img style={imgStyle} src={correctImage}/>
                         <p style={textStyle}>{correct}</p> 
-                     </div>
+                     </motion.div>
                    
                     
                 </motion.div>

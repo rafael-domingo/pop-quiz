@@ -27,7 +27,7 @@ export default function Quiz() {
             }
         }
     }
-    if (quiz.length > 1 && answered <= 12) {
+    if (quiz.length > 1 && answered <= quiz.length - 1) {
         console.log(quiz[answered].question)
         return (
             <AnimatePresence exitBeforeEnter>
