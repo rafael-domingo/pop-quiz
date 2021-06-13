@@ -10,6 +10,7 @@ import Home from './containers/Home';
 import Loading from './containers/Loading';
 import Results from './containers/Results';
 import Profile from './containers/Profile';
+import Feedback from './containers/Feedback';
 function App() {
   const dispatch = useDispatch();
   const authorization = useSelector(state => state.user.authorization);
@@ -76,6 +77,18 @@ function App() {
         <QuizGame />
       </div>
 
+    )
+  } else if (view == 'Correct') {
+    return (
+      <div className="App">
+        <Feedback result={'correct'} />
+      </div>
+    )
+  } else if (view == 'Incorrect') {
+    return (
+      <div className="App">
+        <Feedback result={'incorrect'} />
+      </div>
     )
   } else if (view == 'Profile') {
     return (

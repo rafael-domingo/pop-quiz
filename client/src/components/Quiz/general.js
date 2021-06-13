@@ -3,7 +3,7 @@ import Lyric from './lyric';
 import Picture from './picture';
 import Track from './track';
 import { useSelector, useDispatch } from "react-redux";
-import { setCorrect, setAnswered } from "../../redux/user";
+import { setView } from "../../redux/user";
 import { AnimatePresence, motion } from "framer-motion";
 export default function General({index}) {
    const question = useSelector(state => state.user.quiz[index])
@@ -74,14 +74,14 @@ export default function General({index}) {
                         {question.question}
                     </motion.div>    
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
-                        dispatch(setCorrect())
-                        dispatch(setAnswered())
+                        dispatch(setView('Correct'))
                     }}>
                         <img style={imgStyle} src={question.correctImage}/>
                         <p style={textStyle}>{question.correct}</p>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
-                        dispatch(setAnswered())
+                        dispatch(setView('Incorrect'))
+
                     }}>
                         <img style={imgStyle} src={question.incorrectImage}/>
                         <p style={textStyle}>{question.incorrect}</p>
@@ -98,14 +98,15 @@ export default function General({index}) {
                         {question.question}
                     </motion.div>    
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
-                        dispatch(setAnswered())
+                        dispatch(setView('Incorrect'))
+
                     }}>
                         <img style={imgStyle} src={question.incorrectImage}/>
                         <p style={textStyle}>{question.incorrect}</p>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
-                        dispatch(setCorrect())
-                        dispatch(setAnswered())
+                        dispatch(setView('Correct'))
+
                     }}>
                         <img style={imgStyle} src={question.correctImage}/>
                         <p style={textStyle}>{question.correct}</p>

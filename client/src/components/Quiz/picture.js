@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
-import { setCorrect, setAnswered } from "../../redux/user";
+import { setView } from "../../redux/user";
 import { motion } from "framer-motion";
 export default function Picture({question, correct, incorrect, image, randomNum}) {
     const dispatch = useDispatch()
@@ -30,16 +30,17 @@ export default function Picture({question, correct, incorrect, image, randomNum}
         borderRadius: '50%'
     }
     const answerStyle = {  
-        width: '80vw',
+        width: '60vw',
         height: '15vw',
-        margin: '5vw',
+        margin: '3vw',
         border: '2px solid #979797',
         borderRadius: '20px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         color: '#979797',
-        fontSize: '5vw',
+        fontSize: '3vw',
+        fontWeight: 'bold',
         padding: '3vw',
         cursor: 'pointer'
     }
@@ -53,13 +54,12 @@ export default function Picture({question, correct, incorrect, image, randomNum}
                     <img style={imgStyle} src={image} />
                 </div>
                <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
-                    dispatch(setCorrect())
-                    dispatch(setAnswered())
+                    dispatch(setView('Correct'))
                 }}>
                     {correct}
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
-                    dispatch(setAnswered())
+                    dispatch(setView('Incorrect'))
                 }}>
                     {incorrect}
                 </motion.div>
@@ -75,13 +75,12 @@ export default function Picture({question, correct, incorrect, image, randomNum}
                     <img style={imgStyle} src={image} />
                 </div>
                 <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
-                    dispatch(setAnswered())
+                    dispatch(setView('Incorrect'))
                 }}>
                     {incorrect}
                 </motion.div>
                <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
-                    dispatch(setCorrect())
-                    dispatch(setAnswered())
+                    dispatch(setView('Correct'))
                 }}>
                     {correct}
                 </motion.div>

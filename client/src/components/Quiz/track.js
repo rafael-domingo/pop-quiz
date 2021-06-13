@@ -2,7 +2,7 @@ import e from 'cors';
 import React, { useState } from 'react';
 import ReactHowler from 'react-howler';
 import { useDispatch } from "react-redux";
-import { setCorrect, setAnswered } from "../../redux/user";
+import { setView } from "../../redux/user";
 import { AnimatePresence, motion } from 'framer-motion';
 import Play from "../../assets/play.png";
 import Pause from "../../assets/pause.png";
@@ -108,14 +108,13 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                         <motion.img whileHover={{opacity: 1, scale: 1, rotate: 0}} animate={playing ? "active" : "inactive"} variants={playVariants} style={playbackStyle} src={playing ? Pause : Play} onClick={() => setPlaying(!playing)}/>
                     </div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
-                    dispatch(setCorrect())
-                    dispatch(setAnswered())
+                    dispatch(setView('Correct'))
                     }}>
                         <img style={imgStyle} src={correctImage}/>
                         <p style={textStyle}>{correct}</p> 
                      </motion.div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
-                        dispatch(setAnswered())
+                        dispatch(setView('Incorrect'))
                     }}>
                         <img style={imgStyle} src={incorrectImage}/>
                         <p style={textStyle}>{incorrect}</p> 
@@ -138,14 +137,13 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                         <motion.img whileHover={{opacity: 1, scale: 1, rotate: 0}} animate={playing ? "active" : "inactive"} variants={playVariants} style={playbackStyle} src={playing ? Pause : Play} onClick={() => setPlaying(!playing)}/>
                     </div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
-                        dispatch(setAnswered())
+                        dispatch(setView('Incorrect'))
                     }}>
                         <img style={imgStyle} src={incorrectImage}/>
                         <p style={textStyle}>{incorrect}</p> 
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
-                    dispatch(setCorrect())
-                    dispatch(setAnswered())
+                    dispatch(setView('Correct'))
                     }}>
                         <img style={imgStyle} src={correctImage}/>
                         <p style={textStyle}>{correct}</p> 

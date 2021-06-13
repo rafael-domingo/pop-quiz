@@ -2,11 +2,27 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setView } from '../redux/user';
 import { motion, AnimatePresence } from "framer-motion";
+import Confetti from 'react-dom-confetti';
+
 export default function Results() {
     const correct = useSelector(state => state.user.correct)
     const answered = useSelector(state => state.user.answered)
     const dispatch = useDispatch()
     const percent = Math.floor(correct/answered*100)
+    const [confetti, setConfetti] = React.useState(false)
+    const config = {
+        angle: 90,
+        spread: 30,
+        startVelocity: "99",
+        elementCount: "200",
+        dragFriction: 0.12,
+        duration: "8390",
+        stagger: 3,
+        width: "39px",
+        height: "35px",
+        perspective: "1000px",
+        colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+      };
     if (percent >= 90) {
         var response = 'Looks like you know your stuff!'
     } else if (percent >= 70) {
@@ -25,12 +41,12 @@ export default function Results() {
         marginTop: '10vw'
     }
     const responseStyle = {
-        fontSize: '10vw',
+        fontSize: '6vw',
         width: '100%',
         fontWeight: 'bold'
     }
     const scoreStyle = {
-        fontSize: '20vw',
+        fontSize: '6vw',
         width: '100%',
         color: '#979797',
         marginTop: '10vw'
@@ -88,9 +104,15 @@ export default function Results() {
             }
         }
     }
+    React.useEffect(() => {
+        setTimeout(() => {
+            setConfetti(true)
+        }, 2000)        
+    })
     return (
-        <AnimatePresence exitBeforeEnter>            
+        <AnimatePresence exitBeforeEnter>     
         <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
+            <Confetti active={ confetti } config={ config }/>
             <div style={responseStyle}>
                 {response}
             </div>
