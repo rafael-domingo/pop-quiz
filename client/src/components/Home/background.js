@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 export default function Background() {
     const newReleases = useSelector(state => state.user.newReleases)
-    console.log(newReleases)
     const divStyle = {
         display: 'flex',
         justifyContent: 'center',
@@ -38,7 +37,7 @@ export default function Background() {
             opacity: 1,
             y: ['-400vh', '-300vh', '-200vh', '-100vh', '0vh', '-50vh', '-150vh', '-250vh', '-350vh'],
             transition: {
-                duration: 20,
+                duration: 10,
                 type: 'spring',
                 repeat: Infinity,
                 repeatType: 'reverse',

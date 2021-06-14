@@ -27,7 +27,6 @@ export default function Quiz() {
         }
     }
     if (quiz.length > 1 && answered <= quiz.length - 1) {
-        console.log(quiz[answered].question)
         return (
             <AnimatePresence exitBeforeEnter>
             <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>           

@@ -36,7 +36,6 @@ function App() {
       })
       // Get Top Tracks
       Spotify.getTopTracks(token).then(response => {
-        console.log(response.items)
         dispatch(setTopTracks(response.items))
         // Get Musix Id for Lyrics 
         Spotify.getMusixId(response.items).then(response => {
@@ -45,7 +44,6 @@ function App() {
         })
       })
     }      
-    console.log(authorization)
 
   }, [authorization, dispatch])
 
