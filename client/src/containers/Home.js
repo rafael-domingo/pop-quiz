@@ -40,7 +40,8 @@ export default function Home() {
     const aStyle = {
         textDecoration: 'none',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+      
     }
 
     // Framer motion parameters
@@ -75,14 +76,14 @@ export default function Home() {
             <motion.div style={headerStyle}>
                 <h1 style={titleStyle}>Pop Quiz</h1>
                 <p style={subtitleStyle}>how well do you know your own music?</p>
-                <a style={aStyle} onClick={() => login()}>
+                <span style={aStyle} onClick={() => login()}>
                     <motion.div 
                         style={loginButton}
                         whileHover={{ scale: 1.2 }}
                         whileTap={{scale: 0.8}}>
                         Login with Spotify
                     </motion.div>
-                </a>
+                </span>
             </motion.div>
             
             

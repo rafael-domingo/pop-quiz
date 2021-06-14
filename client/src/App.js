@@ -1,11 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import { Spotify } from '../src/util/Spotify';
 import QuizGame from './containers/Quiz';
-import { Quiz } from '../src/util/Quiz';
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics, setQuiz, setView } from '../src/redux/user'
+import { setAccessToken, setProfilePicture, setUsername, setTopArtists, setTopTracks, setTopLyrics, setView } from '../src/redux/user'
 import Home from './containers/Home';
 import Loading from './containers/Loading';
 import Results from './containers/Results';
@@ -14,9 +12,7 @@ import Feedback from './containers/Feedback';
 function App() {
   const dispatch = useDispatch();
   const authorization = useSelector(state => state.user.authorization);
-  const artists = useSelector(state => state.user.topArtists);
-  const tracks = useSelector(state => state.user.topTracks);
-  const lyrics = useSelector(state => state.user.topLyrics);
+ 
   const view = useSelector(state => state.user.view)
   // Start populating Redux State if user has authorized Spotify 
   React.useEffect(() => {
@@ -51,7 +47,7 @@ function App() {
     }      
     console.log(authorization)
 
-  }, [])
+  }, [authorization, dispatch])
 
   // Generate quiz once artists, tracks, and lyrics are obtained
   // if (artists.length > 1 && tracks.length > 1 && lyrics.length > 1) {
@@ -59,38 +55,38 @@ function App() {
   //   dispatch(setQuiz(output))
   // }
  
-  if (view == 'Home') {
+  if (view === 'Home') {
     return (
       <div className="App">
         <Home />
       </div>
     )    
-  } else if (view == 'Loading') {
+  } else if (view === 'Loading') {
     return ( 
       <div className="App">
         <Loading />
       </div>
     )   
-  } else if (view == 'Quiz')  {
+  } else if (view === 'Quiz')  {
     return (
       <div className="App">
         <QuizGame />
       </div>
 
     )
-  } else if (view == 'Correct') {
+  } else if (view === 'Correct') {
     return (
       <div className="App">
         <Feedback result={'correct'} />
       </div>
     )
-  } else if (view == 'Incorrect') {
+  } else if (view === 'Incorrect') {
     return (
       <div className="App">
         <Feedback result={'incorrect'} />
       </div>
     )
-  } else if (view == 'Profile') {
+  } else if (view === 'Profile') {
     return (
       <div className="App">
         <Profile />

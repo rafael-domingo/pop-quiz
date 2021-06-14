@@ -42,7 +42,7 @@ export default function Feedback({result}) {
     var randomNum = Math.floor(Math.random() * 6)
 
     React.useEffect(() => {
-        if (result == 'correct') {
+        if (result === 'correct') {
             dispatch(setCorrect())
             dispatch(setAnswered())
         } else {
@@ -82,7 +82,7 @@ export default function Feedback({result}) {
             opacity: 1
         }
     }
-    if (result == 'correct') {
+    if (result === 'correct') {
      
         return (
             <AnimatePresence exitBeforeEnter>

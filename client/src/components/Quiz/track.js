@@ -1,4 +1,3 @@
-import e from 'cors';
 import React, { useState } from 'react';
 import ReactHowler from 'react-howler';
 import { useDispatch } from "react-redux";
@@ -8,7 +7,6 @@ import Play from "../../assets/play.png";
 import Pause from "../../assets/pause.png";
 export default function Track({question, correct, incorrect, track, randomNum, correctImage, incorrectImage}) {
     const dispatch = useDispatch()
-    const [initialize, setInitialize] = useState(false)
     const [playing, setPlaying] = useState(false)
     const divStyle = {
         color: 'white',
@@ -95,7 +93,7 @@ export default function Track({question, correct, incorrect, track, randomNum, c
             opacity: 1,
         }
     }
-        if (randomNum == 0) {
+        if (randomNum === 0) {
             return (
                 <AnimatePresence exitBeforeEnter>
 
@@ -110,13 +108,13 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
                     dispatch(setView('Correct'))
                     }}>
-                        <img style={imgStyle} src={correctImage}/>
+                        <img alt="correct" style={imgStyle} src={correctImage}/>
                         <p style={textStyle}>{correct}</p> 
                      </motion.div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
                         dispatch(setView('Incorrect'))
                     }}>
-                        <img style={imgStyle} src={incorrectImage}/>
+                        <img alt="incorrect" style={imgStyle} src={incorrectImage}/>
                         <p style={textStyle}>{incorrect}</p> 
                     </motion.div>
                     
@@ -139,13 +137,13 @@ export default function Track({question, correct, incorrect, track, randomNum, c
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
                         dispatch(setView('Incorrect'))
                     }}>
-                        <img style={imgStyle} src={incorrectImage}/>
+                        <img alt="incorrect" style={imgStyle} src={incorrectImage}/>
                         <p style={textStyle}>{incorrect}</p> 
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  style={answerStyle} onClick={() => {
                     dispatch(setView('Correct'))
                     }}>
-                        <img style={imgStyle} src={correctImage}/>
+                        <img alt="correct" style={imgStyle} src={correctImage}/>
                         <p style={textStyle}>{correct}</p> 
                      </motion.div>
                    

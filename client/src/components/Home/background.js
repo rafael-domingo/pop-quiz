@@ -14,7 +14,6 @@ export default function Background() {
         overflow: 'hidden',
         opacity: '100%',
         position: 'absolute',
-        overflow: 'hidden',
         zIndex: '-1'
     }
 

@@ -11,7 +11,6 @@ export default function Loading() {
     const artists = useSelector(state => state.user.topArtists);
     const tracks = useSelector(state => state.user.topTracks);
     const lyrics = useSelector(state => state.user.topLyrics);
-    const view = useSelector(state => state.user.view)
     const dispatch = useDispatch()
     const divStyle = {
         display: 'flex',
@@ -36,14 +35,7 @@ export default function Loading() {
         fontWeight: 'bold',
         marginBottom: '50px'
     }
-    const findingStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        height: 'auto',
-        marginTop: '50px'
-    }
+
     const findingText = {
         width: '100%',
         fontSize: '3vw',

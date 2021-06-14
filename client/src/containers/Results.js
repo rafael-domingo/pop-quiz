@@ -12,25 +12,26 @@ export default function Results() {
     const [confetti, setConfetti] = React.useState(false)
     const config = {
         angle: 90,
-        spread: 30,
-        startVelocity: "99",
-        elementCount: "200",
+        spread: 360,
+        startVelocity: 40,
+        elementCount: 70,
         dragFriction: 0.12,
-        duration: "8390",
+        duration: 3000,
         stagger: 3,
-        width: "39px",
-        height: "35px",
-        perspective: "1000px",
+        width: "10px",
+        height: "10px",
+        perspective: "500px",
         colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
       };
+    var response = ''
     if (percent >= 90) {
-        var response = 'Looks like you know your stuff!'
+        response = 'Looks like you know your stuff!'
     } else if (percent >= 70) {
-        var response = 'Not bad! Keep on rocking!'
+        response = 'Not bad! Keep on rocking!'
     } else if (percent <= 50) {
-        var response = `Sorry dawg, looks like you're not going to Hollywood.`
+        response = `Sorry dawg, looks like you're not going to Hollywood.`
     } else {
-        var response = `Music to my ears`
+        response = `Music to my ears`
     }
     const divStyle = {
         color: 'white',
@@ -49,7 +50,10 @@ export default function Results() {
         fontSize: '6vw',
         width: '100%',
         color: '#979797',
-        marginTop: '10vw'
+        marginTop: '10vw',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
     const buttonStyle = {
         width: '100%',
@@ -112,11 +116,11 @@ export default function Results() {
     return (
         <AnimatePresence exitBeforeEnter>     
         <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
-            <Confetti active={ confetti } config={ config }/>
             <div style={responseStyle}>
                 {response}
             </div>
             <div style={scoreStyle}>
+                <Confetti active={ confetti } config={ config }/>
                 {percent}%
             </div>
             <div style={buttonStyle}>

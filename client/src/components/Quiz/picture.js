@@ -44,14 +44,14 @@ export default function Picture({question, correct, incorrect, image, randomNum}
         padding: '3vw',
         cursor: 'pointer'
     }
-    if (randomNum == 0) {
+    if (randomNum === 0) {
         return (
             <div style={divStyle}>
                 <div style={questionStyle}>
                     {question}
                 </div>    
                 <div style={imgDivStyle}>
-                    <img style={imgStyle} src={image} />
+                    <img alt="question" style={imgStyle} src={image} />
                 </div>
                <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
                     dispatch(setView('Correct'))
@@ -72,7 +72,7 @@ export default function Picture({question, correct, incorrect, image, randomNum}
                     {question}
                 </div>    
                 <div style={imgDivStyle}>
-                    <img style={imgStyle} src={image} />
+                    <img alt="question" style={imgStyle} src={image} />
                 </div>
                 <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} style={answerStyle} onClick={() => {
                     dispatch(setView('Incorrect'))

@@ -1,13 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import General from '../components/Quiz/general';
 import Score from '../components/Quiz/score';
 import Results from './Results';
 export default function Quiz() {
     const quiz = useSelector(state => state.user.quiz)
     const answered = useSelector(state => state.user.answered)
-    const dispatch = useDispatch()
     
     const divStyle = {
         color: 'white'

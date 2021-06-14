@@ -65,8 +65,8 @@ export default function General({index}) {
     }
 
 
-    if (question.category == 'general') {
-        if (randomNum == 0) {
+    if (question.category === 'general') {
+        if (randomNum === 0) {
             return (
                 <AnimatePresence exitBeforeEnter>
                 <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
@@ -76,14 +76,14 @@ export default function General({index}) {
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setView('Correct'))
                     }}>
-                        <img style={imgStyle} src={question.correctImage}/>
+                        <img alt="correct" style={imgStyle} src={question.correctImage}/>
                         <p style={textStyle}>{question.correct}</p>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}} variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setView('Incorrect'))
 
                     }}>
-                        <img style={imgStyle} src={question.incorrectImage}/>
+                        <img alt="incorrect" style={imgStyle} src={question.incorrectImage}/>
                         <p style={textStyle}>{question.incorrect}</p>
                     </motion.div>
                 </motion.div>
@@ -101,14 +101,14 @@ export default function General({index}) {
                         dispatch(setView('Incorrect'))
 
                     }}>
-                        <img style={imgStyle} src={question.incorrectImage}/>
+                        <img alt="incorrect" style={imgStyle} src={question.incorrectImage}/>
                         <p style={textStyle}>{question.incorrect}</p>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.2 }} whileTap={{scale: 0.8}}  variants={variants} initial="hidden" animate="show" exit="hidden"  style={answerStyle} onClick={() => {
                         dispatch(setView('Correct'))
 
                     }}>
-                        <img style={imgStyle} src={question.correctImage}/>
+                        <img alt="correct" style={imgStyle} src={question.correctImage}/>
                         <p style={textStyle}>{question.correct}</p>
                     </motion.div>                   
                 </motion.div>
@@ -117,7 +117,7 @@ export default function General({index}) {
             )
         }
        
-    } else if (question.category == 'track') {
+    } else if (question.category === 'track') {
         return (
             <AnimatePresence exitBeforeEnter>
             <motion.div variants={variants} initial="hidden" animate="show" exit="hidden"  style={divStyle}>
@@ -126,7 +126,7 @@ export default function General({index}) {
             </AnimatePresence>
 
         )
-    } else if (question.category == 'picture') {
+    } else if (question.category === 'picture') {
         return (
             <AnimatePresence exitBeforeEnter>
             <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
@@ -135,7 +135,7 @@ export default function General({index}) {
             </AnimatePresence>
 
         )
-    } else if (question.category == 'lyric') {
+    } else if (question.category === 'lyric') {
         return (
             <AnimatePresence exitBeforeEnter>
             <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>

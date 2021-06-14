@@ -120,7 +120,7 @@ export default function Profile()  {
             }
         }
     }
-    if (state == 'Artists') {
+    if (state === 'Artists') {
         return (
         <AnimatePresence exitBeforeEnter>
             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} style={divStyle}>
@@ -144,7 +144,7 @@ export default function Profile()  {
                     artists.map((artist) => {
                         return (
                             <motion.div variants={variants} initial="hidden" animate="show" exit="exit" key={artist.id} style={itemStyle}>
-                                <img style ={imgStyle} src={artist.images[0].url}/>
+                                <img alt="artist" style ={imgStyle} src={artist.images[0].url}/>
                                 <p style={textStyle}>{artist.name}</p>
                             </motion.div>
                         )
@@ -154,7 +154,7 @@ export default function Profile()  {
             </motion.div>
         </AnimatePresence>
         )
-    } else if (state == 'Tracks') {
+    } else if (state === 'Tracks') {
         return (
         <AnimatePresence exitBeforeEnter>
             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} style={divStyle}>
@@ -178,7 +178,7 @@ export default function Profile()  {
                     tracks.map((track) => {
                         return (
                             <motion.div variants={variants} initial="hidden" animate="show" exit="exit" key={track.id} div style={itemStyle}>
-                                <img style ={imgStyle} src={track.album.images[0].url}/>
+                                <img alt="track" style ={imgStyle} src={track.album.images[0].url}/>
                                 <p style={textStyle}>{track.name} by {track.artists[0].name}</p>
                             </motion.div>
                         )
