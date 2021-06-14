@@ -11,6 +11,9 @@ https://poppquiz.herokuapp.com/
 
 ![GIF of App](https://github.com/rafael-domingo/pop-quiz/blob/be7bd36d4227e7c5e0259288f430ad431e532de2/popquiz.gif)
 
+# Design
+See the original design in [Sketch](https://sketch.cloud/s/a370c302-375a-4bfd-841d-a91b7f2fbc58)
+
 # Technologies and Libraries 
 Below are libraries, frameworks and APIs that power SeeFood:
 
