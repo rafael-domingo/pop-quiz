@@ -7,7 +7,7 @@ Quiz yourself on your own music library. See if you can tell who your top artist
 This requires a Spotify account to use since it utilizes Spotify metadata to create your personalized quiz. 
 
 # Demo
-https://www.poppquiz.herokuapp.com/
+https://poppquiz.herokuapp.com/
 
 ![GIF of App](https://github.com/rafael-domingo/pop-quiz/blob/be7bd36d4227e7c5e0259288f430ad431e532de2/popquiz.gif)
 
