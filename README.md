@@ -16,10 +16,10 @@ Below are libraries, frameworks and APIs that power SeeFood:
 
 ### Front-end
 * [React.js](https://github.com/facebook/react)
-* [Redux] (https://redux-toolkit.js.org/)
+* [Redux](https://redux-toolkit.js.org/)
 * [Framer Motion API](https://www.framer.com/api/motion/)
-* [Howler] (https://github.com/thangngoc89/react-howler#readme)
-* [Confetti] (https://github.com/daniel-lundin/react-dom-confetti)
+* [Howler](https://github.com/thangngoc89/react-howler#readme)
+* [Confetti](https://github.com/daniel-lundin/react-dom-confetti)
 
 ### Back-end
 * [NodeJS](https://nodejs.org/en/)
