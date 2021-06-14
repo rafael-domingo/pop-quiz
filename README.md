@@ -9,7 +9,7 @@ This requires a Spotify account to use since it utilizes Spotify metadata to cre
 # Demo
 https://www.poppquiz.herokuapp.com/
 
-![GIF of App](https://github.com/rafael-domingo/pop-quiz/blob/f1560368375cdc3e5d408cdc729a20a47731ce21/gif1.gif)
+![GIF of App](https://github.com/rafael-domingo/pop-quiz/blob/be7bd36d4227e7c5e0259288f430ad431e532de2/popquiz.gif)
 
 # Technologies and Libraries 
 Below are libraries, frameworks and APIs that power SeeFood:
