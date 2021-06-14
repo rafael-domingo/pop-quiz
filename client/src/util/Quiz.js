@@ -27,9 +27,7 @@ export const Quiz = {
         // WHICH ARTIST IS MORE POPULAR ON SPOTIFY?
         
         var popularityArray = []       
-        topArtists.map(item => {
-            popularityArray.push(item.popularity)
-        })
+        topArtists.map(item => popularityArray.push(item.popularity))
         // determine max and min popularity values 
         var maxIndex = 0
         var maxValue = popularityArray[maxIndex]
@@ -57,18 +55,21 @@ export const Quiz = {
 
         // Create random indexes
         var [randIndex1, randIndex2] = this.generateRandomIndex(topArtists.length, maxIndex, minIndex)
-
+        var correct= ''
+        var incorrect = ''
+        var correctImage = ''
+        var incorrectImage = ''
         // figure out which one is more popular
         if (topArtists[randIndex1].popularity > topArtists[randIndex2].popularity) {
-            var correct = topArtists[randIndex1].name
-            var incorrect = topArtists[randIndex2].name
-            var correctImage = topArtists[randIndex1].images[0].url
-            var incorrectImage = topArtists[randIndex2].images[0].url
+            correct = topArtists[randIndex1].name
+            incorrect = topArtists[randIndex2].name
+            correctImage = topArtists[randIndex1].images[0].url
+            incorrectImage = topArtists[randIndex2].images[0].url
         } else {
-            var correct = topArtists[randIndex2].name
-            var incorrect = topArtists[randIndex1].name
-            var correctImage = topArtists[randIndex2].images[0].url
-            var incorrectImage = topArtists[randIndex1].images[0].url
+            correct = topArtists[randIndex2].name
+            incorrect = topArtists[randIndex1].name
+            correctImage = topArtists[randIndex2].images[0].url
+            incorrectImage = topArtists[randIndex1].images[0].url
 
         }
         questionObject = {
@@ -83,14 +84,12 @@ export const Quiz = {
 
         // WHICH TRACK IS MORE POPULAR ON SPOTIFY?         
         popularityArray = []       
-        topTracks.map(item => {
-            popularityArray.push(item.popularity)
-        })
+        topTracks.map(item => popularityArray.push(item.popularity))
         maxIndex = 0
         maxValue = popularityArray[maxIndex]
         minIndex = 0
         minValue = popularityArray[minIndex]
-        for (var i = 1; i < popularityArray.length; i++) {
+        for (i = 1; i < popularityArray.length; i++) {
             if (popularityArray[i] > maxValue) {
                 maxIndex = i
                 maxValue = popularityArray[i]
@@ -111,15 +110,15 @@ export const Quiz = {
         quizArray.push(questionObject)
 
         // create random indexes
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, maxIndex, minIndex)
+        var [randIndex3, randIndex4] = this.generateRandomIndex(topTracks.length, maxIndex, minIndex)
        
         // figure out which one is more popular
-        if (topTracks[randIndex1].popularity > topTracks[randIndex2].popularity) {
-            var correct = randIndex1
-            var incorrect = randIndex2
+        if (topTracks[randIndex3].popularity > topTracks[randIndex4].popularity) {
+            correct = randIndex3
+            incorrect = randIndex4
         } else {
-            var correct = randIndex2
-            var incorrect = randIndex1
+            correct = randIndex4
+            incorrect = randIndex3
         }
         questionObject = {
             question: 'Which track is more popular on Spotify?',
@@ -132,218 +131,218 @@ export const Quiz = {
         quizArray.push(questionObject)
 
         // WHAT TRACK IS THIS?
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex5, randIndex6] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Can you name this track?',
-            url: topTracks[randIndex1].preview_url,
-            correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-            incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+            url: topTracks[randIndex5].preview_url,
+            correct: `${topTracks[randIndex5].name} by ${topTracks[randIndex5].artists[0].name}`,
+            incorrect: `${topTracks[randIndex6].name} by ${topTracks[randIndex6].artists[0].name}`,
             category: 'track',
-            correctImage: topTracks[randIndex1].album.images[0].url,
-            incorrectImage: topTracks[randIndex2].album.images[0].url
+            correctImage: topTracks[randIndex5].album.images[0].url,
+            incorrectImage: topTracks[randIndex6].album.images[0].url
         }
         quizArray.push(questionObject)
 
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex7, randIndex8] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Can you name this track?',
-            url: topTracks[randIndex1].preview_url,
-            correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-            incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+            url: topTracks[randIndex7].preview_url,
+            correct: `${topTracks[randIndex7].name} by ${topTracks[randIndex7].artists[0].name}`,
+            incorrect: `${topTracks[randIndex8].name} by ${topTracks[randIndex8].artists[0].name}`,
             category: 'track',
-            correctImage: topTracks[randIndex1].album.images[0].url,
-            incorrectImage: topTracks[randIndex2].album.images[0].url
+            correctImage: topTracks[randIndex7].album.images[0].url,
+            incorrectImage: topTracks[randIndex8].album.images[0].url
         }
         quizArray.push(questionObject)
 
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex9, randIndex10] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Can you name this track?',
-            url: topTracks[randIndex1].preview_url,
-            correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-            incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+            url: topTracks[randIndex9].preview_url,
+            correct: `${topTracks[randIndex9].name} by ${topTracks[randIndex9].artists[0].name}`,
+            incorrect: `${topTracks[randIndex10].name} by ${topTracks[randIndex10].artists[0].name}`,
             category: 'track',
-            correctImage: topTracks[randIndex1].album.images[0].url,
-            incorrectImage: topTracks[randIndex2].album.images[0].url
+            correctImage: topTracks[randIndex9].album.images[0].url,
+            incorrectImage: topTracks[randIndex10].album.images[0].url
         }
         quizArray.push(questionObject)
 
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex11, randIndex12] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Can you name this track?',
-            url: topTracks[randIndex1].preview_url,
-            correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-            incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+            url: topTracks[randIndex11].preview_url,
+            correct: `${topTracks[randIndex11].name} by ${topTracks[randIndex11].artists[0].name}`,
+            incorrect: `${topTracks[randIndex12].name} by ${topTracks[randIndex12].artists[0].name}`,
             category: 'track',
-            correctImage: topTracks[randIndex1].album.images[0].url,
-            incorrectImage: topTracks[randIndex2].album.images[0].url
-        }
-        quizArray.push(questionObject)
-
-
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
-        questionObject = {
-            question: 'Can you name this track?',
-            url: topTracks[randIndex1].preview_url,
-            correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-            incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
-            category: 'track',
-            correctImage: topTracks[randIndex1].album.images[0].url,
-            incorrectImage: topTracks[randIndex2].album.images[0].url
+            correctImage: topTracks[randIndex11].album.images[0].url,
+            incorrectImage: topTracks[randIndex12].album.images[0].url
         }
         quizArray.push(questionObject)
 
 
-
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex13, randIndex14] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Can you name this track?',
-            url: topTracks[randIndex1].preview_url,
-            correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-            incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+            url: topTracks[randIndex13].preview_url,
+            correct: `${topTracks[randIndex13].name} by ${topTracks[randIndex13].artists[0].name}`,
+            incorrect: `${topTracks[randIndex14].name} by ${topTracks[randIndex14].artists[0].name}`,
             category: 'track',
-            correctImage: topTracks[randIndex1].album.images[0].url,
-            incorrectImage: topTracks[randIndex2].album.images[0].url
+            correctImage: topTracks[randIndex13].album.images[0].url,
+            incorrectImage: topTracks[randIndex14].album.images[0].url
+        }
+        quizArray.push(questionObject)
+
+
+
+        var [randIndex15, randIndex16] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        questionObject = {
+            question: 'Can you name this track?',
+            url: topTracks[randIndex15].preview_url,
+            correct: `${topTracks[randIndex15].name} by ${topTracks[randIndex15].artists[0].name}`,
+            incorrect: `${topTracks[randIndex16].name} by ${topTracks[randIndex16].artists[0].name}`,
+            category: 'track',
+            correctImage: topTracks[randIndex15].album.images[0].url,
+            incorrectImage: topTracks[randIndex16].album.images[0].url
         }
         quizArray.push(questionObject)
 
 
         // WHO IS THIS ARTIST?
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex17, randIndex18] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Who is this artist?',
-            image: topArtists[randIndex1].images[0].url,
-            correct: topArtists[randIndex1].name,
-            incorrect: topArtists[randIndex2].name,
+            image: topArtists[randIndex17].images[0].url,
+            correct: topArtists[randIndex17].name,
+            incorrect: topArtists[randIndex18].name,
             category: 'picture'
         }
         quizArray.push(questionObject)
 
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex19, randIndex20] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Who is this artist?',
-            image: topArtists[randIndex1].images[0].url,
-            correct: topArtists[randIndex1].name,
-            incorrect: topArtists[randIndex2].name,
+            image: topArtists[randIndex19].images[0].url,
+            correct: topArtists[randIndex19].name,
+            incorrect: topArtists[randIndex20].name,
             category: 'picture'
         }
         quizArray.push(questionObject)        
 
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex21, randIndex22] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Who is this artist?',
-            image: topArtists[randIndex1].images[0].url,
-            correct: topArtists[randIndex1].name,
-            incorrect: topArtists[randIndex2].name,
+            image: topArtists[randIndex21].images[0].url,
+            correct: topArtists[randIndex21].name,
+            incorrect: topArtists[randIndex22].name,
             category: 'picture'
         }
         quizArray.push(questionObject)        
 
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topTracks.length, 0, 0) 
+        var [randIndex23, randIndex24] = this.generateRandomIndex(topTracks.length, 0, 0) 
         questionObject = {
             question: 'Who is this artist?',
-            image: topArtists[randIndex1].images[0].url,
-            correct: topArtists[randIndex1].name,
-            incorrect: topArtists[randIndex2].name,
+            image: topArtists[randIndex23].images[0].url,
+            correct: topArtists[randIndex23].name,
+            incorrect: topArtists[randIndex24].name,
             category: 'picture'
         }
         quizArray.push(questionObject)        
 
         // WHICH TRACK HAS THIS LYRIC?
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-        var lyricsUndefined = true
+        var [randIndex25, randIndex26] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+        var lyricsUndefined1 = true
         // check if lyrics are undefined
-        while (lyricsUndefined) {
-            [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-            if (topLyrics[randIndex1].snippet_body !== "") {
+        while (lyricsUndefined1) {
+            [randIndex25, randIndex26] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+            if (topLyrics[randIndex25].snippet_body !== "") {
                 questionObject = {
                     question: 'Which track has this lyric?',
-                    lyric: topLyrics[randIndex1].snippet_body,
-                    correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-                    incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+                    lyric: topLyrics[randIndex25].snippet_body,
+                    correct: `${topTracks[randIndex25].name} by ${topTracks[randIndex25].artists[0].name}`,
+                    incorrect: `${topTracks[randIndex26].name} by ${topTracks[randIndex26].artists[0].name}`,
                     category: 'lyric',
-                    correctImage: topTracks[randIndex1].album.images[0].url,
-                    incorrectImage: topTracks[randIndex2].album.images[0].url
+                    correctImage: topTracks[randIndex25].album.images[0].url,
+                    incorrectImage: topTracks[randIndex26].album.images[0].url
                 }
                 quizArray.push(questionObject)
-                lyricsUndefined = false
+                lyricsUndefined1 = false
             }
         }
      
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0)
-        var lyricsUndefined = true
+        var [randIndex27, randIndex28] = this.generateRandomIndex(topLyrics.length, 0, 0)
+        var lyricsUndefined2 = true
         // check if lyrics are undefined
-        while (lyricsUndefined) {
-            [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-            if (topLyrics[randIndex1].snippet_body !== "") {
+        while (lyricsUndefined2) {
+            [randIndex27, randIndex28] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+            if (topLyrics[randIndex27].snippet_body !== "") {
                 questionObject = {
                     question: 'Which track has this lyric?',
-                    lyric: topLyrics[randIndex1].snippet_body,
-                    correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-                    incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+                    lyric: topLyrics[randIndex27].snippet_body,
+                    correct: `${topTracks[randIndex27].name} by ${topTracks[randIndex27].artists[0].name}`,
+                    incorrect: `${topTracks[randIndex28].name} by ${topTracks[randIndex28].artists[0].name}`,
                     category: 'lyric',
-                    correctImage: topTracks[randIndex1].album.images[0].url,
-                    incorrectImage: topTracks[randIndex2].album.images[0].url
+                    correctImage: topTracks[randIndex27].album.images[0].url,
+                    incorrectImage: topTracks[randIndex28].album.images[0].url
                 }
                 quizArray.push(questionObject)
-                lyricsUndefined = false
+                lyricsUndefined2 = false
             }
         }
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-        var lyricsUndefined = true
+        var [randIndex29, randIndex30] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+        var lyricsUndefined3 = true
         // check if lyrics are undefined
-        while (lyricsUndefined) {
-            [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-            if (topLyrics[randIndex1].snippet_body !== "") {
+        while (lyricsUndefined3) {
+            [randIndex29, randIndex30] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+            if (topLyrics[randIndex29].snippet_body !== "") {
                 questionObject = {
                     question: 'Which track has this lyric?',
-                    lyric: topLyrics[randIndex1].snippet_body,
-                    correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-                    incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+                    lyric: topLyrics[randIndex29].snippet_body,
+                    correct: `${topTracks[randIndex29].name} by ${topTracks[randIndex29].artists[0].name}`,
+                    incorrect: `${topTracks[randIndex30].name} by ${topTracks[randIndex30].artists[0].name}`,
                     category: 'lyric',
-                    correctImage: topTracks[randIndex1].album.images[0].url,
-                    incorrectImage: topTracks[randIndex2].album.images[0].url
+                    correctImage: topTracks[randIndex29].album.images[0].url,
+                    incorrectImage: topTracks[randIndex30].album.images[0].url
                 }
                 quizArray.push(questionObject)
-                lyricsUndefined = false
+                lyricsUndefined3 = false
             }
         }
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-        var lyricsUndefined = true
+        var [randIndex31, randIndex32] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+        var lyricsUndefined4 = true
         // check if lyrics are undefined
-        while (lyricsUndefined) {
-            [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-            if (topLyrics[randIndex1].snippet_body !== "") {
+        while (lyricsUndefined4) {
+            [randIndex31, randIndex32] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+            if (topLyrics[randIndex31].snippet_body !== "") {
                 questionObject = {
                     question: 'Which track has this lyric?',
-                    lyric: topLyrics[randIndex1].snippet_body,
-                    correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-                    incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+                    lyric: topLyrics[randIndex31].snippet_body,
+                    correct: `${topTracks[randIndex31].name} by ${topTracks[randIndex31].artists[0].name}`,
+                    incorrect: `${topTracks[randIndex32].name} by ${topTracks[randIndex32].artists[0].name}`,
                     category: 'lyric',
-                    correctImage: topTracks[randIndex1].album.images[0].url,
-                    incorrectImage: topTracks[randIndex2].album.images[0].url
+                    correctImage: topTracks[randIndex31].album.images[0].url,
+                    incorrectImage: topTracks[randIndex32].album.images[0].url
                 }
                 quizArray.push(questionObject)
-                lyricsUndefined = false
+                lyricsUndefined4 = false
             }
         }
-        var [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-        var lyricsUndefined = true
+        var [randIndex33, randIndex34] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+        var lyricsUndefined5 = true
         // check if lyrics are undefined
-        while (lyricsUndefined) {
-            [randIndex1, randIndex2] = this.generateRandomIndex(topLyrics.length, 0, 0) 
-            if (topLyrics[randIndex1].snippet_body !== "") {
+        while (lyricsUndefined5) {
+            [randIndex33, randIndex34] = this.generateRandomIndex(topLyrics.length, 0, 0) 
+            if (topLyrics[randIndex33].snippet_body !== "") {
                 questionObject = {
                     question: 'Which track has this lyric?',
-                    lyric: topLyrics[randIndex1].snippet_body,
-                    correct: `${topTracks[randIndex1].name} by ${topTracks[randIndex1].artists[0].name}`,
-                    incorrect: `${topTracks[randIndex2].name} by ${topTracks[randIndex2].artists[0].name}`,
+                    lyric: topLyrics[randIndex33].snippet_body,
+                    correct: `${topTracks[randIndex33].name} by ${topTracks[randIndex33].artists[0].name}`,
+                    incorrect: `${topTracks[randIndex34].name} by ${topTracks[randIndex34].artists[0].name}`,
                     category: 'lyric',
-                    correctImage: topTracks[randIndex1].album.images[0].url,
-                    incorrectImage: topTracks[randIndex2].album.images[0].url
+                    correctImage: topTracks[randIndex33].album.images[0].url,
+                    incorrectImage: topTracks[randIndex34].album.images[0].url
                 }
                 quizArray.push(questionObject)
-                lyricsUndefined = false
+                lyricsUndefined5 = false
             }
         }
 
@@ -357,11 +356,11 @@ export const Quiz = {
         var randIndex2 = Math.floor(Math.random() * maxLength)
         
         // make sure random index is not max or min popularity index
-        while (randIndex1 == maxIndex || randIndex1 == minIndex) {
+        while (randIndex1 === maxIndex || randIndex1 === minIndex) {
             randIndex1 = Math.floor(Math.random() * maxLength)
         }
         // make sure random indexes aren't the same
-        while (randIndex2 == randIndex1) {
+        while (randIndex2 === randIndex1) {
             randIndex2 = Math.floor(Math.random() * maxLength)
         }
         return [randIndex1, randIndex2]
