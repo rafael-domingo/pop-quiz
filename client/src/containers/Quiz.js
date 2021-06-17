@@ -35,6 +35,14 @@ export default function Quiz() {
             </motion.div>
             </AnimatePresence>
         )
+    } else if (quiz.length === 0 || quiz === undefined) {
+        return (
+            <AnimatePresence exitBeforeEnter>
+            <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
+                <Results error={true}/>
+            </motion.div>
+            </AnimatePresence>
+        )
     } else {
         return (
             <AnimatePresence exitBeforeEnter>
@@ -42,8 +50,7 @@ export default function Quiz() {
                 <Results />
             </motion.div>
             </AnimatePresence>
-        )
-        
+        )        
     }
    
 }

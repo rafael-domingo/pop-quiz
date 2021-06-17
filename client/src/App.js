@@ -40,8 +40,8 @@ function App() {
         // Get Musix Id for Lyrics 
         Spotify.getMusixId(response.items).then(response => {
           // Get Lyrics
-          Spotify.getMusixLyrics(response).then(response => dispatch(setTopLyrics(response)))
-        })
+          Spotify.getMusixLyrics(response).then(response => dispatch(setTopLyrics(response))).catch((err) => console.log(err)) 
+        }).catch((err) => console.log(err))
       })
     }      
 
