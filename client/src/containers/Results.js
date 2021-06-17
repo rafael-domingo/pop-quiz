@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Confetti from 'react-dom-confetti';
 import * as LottiePlayer from "@lottiefiles/lottie-player";
 
-export default function Results({error}) {
+export default function Results() {
     const correct = useSelector(state => state.user.correct)
     const answered = useSelector(state => state.user.answered)
     const dispatch = useDispatch()
@@ -114,53 +114,28 @@ export default function Results({error}) {
             setConfetti(true)
         }, 2000)        
     })
-    if ({error}) {
-        return (
-            <AnimatePresence exitBeforeEnter>     
-            <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
-                <div style={{width: '50vw', height: '50vw'}}>
-                    <lottie-player
-                    autoplay
-                    loop
-                    mode="normal"
-                    src='https://assets2.lottiefiles.com/temp/lf20_QYm9j9.json'  background="transparent"  speed="1" 
-                    >
-                    </lottie-player>
-                </div>
-                <div style={responseStyle}>
-                    Uh oh, looks like we're having some technical difficulties. 
-                    <br></br>
-                    <br></br>
-                    Please try again later. 
-                </div>               
-                <div style={buttonStyle}>                 
-                    <div onClick={() => dispatch(setView('Home'))} style={logoutButtonStyle}>Logout of Spotify</div>
-                </div>
-            </motion.div>
-            </AnimatePresence>
-        )
-    } else {
-        return (
-            <AnimatePresence exitBeforeEnter>     
-            <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
-                <div style={responseStyle}>
-                    {response}
-                </div>
-                <div style={scoreStyle}>
-                    <Confetti active={ confetti } config={ config }/>
-                    {percent}%
-                </div>
-                <div style={buttonStyle}>
-                    <div style={quizButtonStyle} onClick={() => {
-                        dispatch(setView('Loading'))
-                    }}>Take the quiz again</div>
-                    <div onClick={() => dispatch(setView('Home'))} style={logoutButtonStyle}>Logout of Spotify</div>
-                    <div style={profileButtonStyle} onClick={() => dispatch(setView('Profile'))}>Your Spotify Profile</div>
-                </div>
-            </motion.div>
-            </AnimatePresence>
+  
+    return (
+        <AnimatePresence exitBeforeEnter>     
+        <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
+            <div style={responseStyle}>
+                {response}
+            </div>
+            <div style={scoreStyle}>
+                <Confetti active={ confetti } config={ config }/>
+                {percent}%
+            </div>
+            <div style={buttonStyle}>
+                <div style={quizButtonStyle} onClick={() => {
+                    dispatch(setView('Loading'))
+                }}>Take the quiz again</div>
+                <div onClick={() => dispatch(setView('Home'))} style={logoutButtonStyle}>Logout of Spotify</div>
+                <div style={profileButtonStyle} onClick={() => dispatch(setView('Profile'))}>Your Spotify Profile</div>
+            </div>
+        </motion.div>
+        </AnimatePresence>
+
+    )
     
-        )
-    }
    
 }

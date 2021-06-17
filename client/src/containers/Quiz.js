@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import General from '../components/Quiz/general';
 import Score from '../components/Quiz/score';
 import Results from './Results';
+import Error from './Error';
 export default function Quiz() {
     const quiz = useSelector(state => state.user.quiz)
     const answered = useSelector(state => state.user.answered)
@@ -39,7 +40,7 @@ export default function Quiz() {
         return (
             <AnimatePresence exitBeforeEnter>
             <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
-                <Results error={true}/>
+                <Error/>
             </motion.div>
             </AnimatePresence>
         )
@@ -47,7 +48,7 @@ export default function Quiz() {
         return (
             <AnimatePresence exitBeforeEnter>
             <motion.div variants={variants} initial="hidden" animate="show" exit="hidden" style={divStyle}>
-                <Results />
+                <Results/>
             </motion.div>
             </AnimatePresence>
         )        

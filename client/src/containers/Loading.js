@@ -103,6 +103,12 @@ export default function Loading() {
        
     } 
 
+    // Handle if there is no profile picture
+    var profilePic = <motion.div style={profileStyle}></motion.div>
+    if (profilePicture.length !== 0 && profilePicture !== null && profilePicture !== undefined) {
+        profilePic = <motion.img variants={childVariants} src={profilePicture} style={profileStyle}/>
+    } 
+    
     if (userName.length > 1) {
         return (
             <AnimatePresence exitBeforeEnter>
@@ -113,7 +119,7 @@ export default function Loading() {
                 initial="hidden"
                 animate="show"
                 exit="hidden">
-                <motion.img variants={childVariants} src={profilePicture} style={profileStyle}/>
+                {profilePic}
                 <motion.div variants={childVariants} style={greetingStyle}>
                     one sec, {userName}
                 </motion.div>
