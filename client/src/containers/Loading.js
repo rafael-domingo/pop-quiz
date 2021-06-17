@@ -92,11 +92,16 @@ export default function Loading() {
     }
 
     // Generate quiz once artists, tracks, and lyrics are obtained
-    if (artists.length > 1 && tracks.length > 1 && lyrics.length > 1) {
-        const output = Quiz.generateQuiz(artists, tracks, lyrics)
-        dispatch(setQuiz(output))
-        dispatch(resetQuiz())
-      }
+    if (artists.length > 1 && tracks.length > 1) {
+        try {
+            const output = Quiz.generateQuiz(artists, tracks, lyrics)
+            dispatch(setQuiz(output))
+            dispatch(resetQuiz())
+        } catch (error) {
+            console.log(error)
+        }
+       
+    } 
 
     if (userName.length > 1) {
         return (
